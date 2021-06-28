@@ -1,10 +1,19 @@
 const { MessageEmbed } = require('discord.js')
 
-const channelCreate = async (server, categoryId, requestedBy, initiatedBy) => {
+const channelCreate = async (
+	server,
+	categoryId,
+	requestedBy,
+	initiatedBy,
+	role
+) => {
 	const channel = await server.channels.create(
 		`${initiatedBy.username} ‎‎‎‎⇆ ${requestedBy.username}`,
 		{
 			parent: categoryId,
+			permissionOverwrites: [
+				{ id: role.permission.bitfield, allow: role.id, deny: ['VIEW_CHANNEL'] },
+			],
 		}
 	)
 

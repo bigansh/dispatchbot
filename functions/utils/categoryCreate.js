@@ -1,6 +1,6 @@
 const categoryCreate = async (server) => {
 	return await server.channels
-		.create('test-channels', {
+		.create('direct-messages', {
 			type: 'category',
 		})
 		.then((category) => category.id)
