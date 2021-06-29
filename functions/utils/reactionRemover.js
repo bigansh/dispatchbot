@@ -8,12 +8,16 @@ const Discord = require('discord.js')
  */
 
 const reactionRemover = async (message, id) => {
-	const userReactions = message.reactions.cache.filter((reaction) =>
-		reaction.users.cache.has(id)
-	)
+	try {
+		const userReactions = message.reactions.cache.filter((reaction) =>
+			reaction.users.cache.has(id)
+		)
 
-	for (const reaction of userReactions.values()) {
-		await reaction.users.remove(id)
+		for (const reaction of userReactions.values()) {
+			await reaction.users.remove(id)
+		}
+	} catch (e) {
+		console.log(e)
 	}
 }
 

@@ -12,11 +12,15 @@ const channelCreate = require('./channelCreate')
  */
 
 const mainCreator = async (client, serverId, requestedBy, initiatedBy) => {
-	const server = client.guilds.cache.get(serverId)
-	const categoryId = '859018201722650645'
+	try {
+		const server = client.guilds.cache.get(serverId)
+		const categoryId = '859018201722650645'
 
-	if (categoryId)
-		await channelCreate(server, categoryId, requestedBy, initiatedBy)
+		if (categoryId)
+			await channelCreate(server, categoryId, requestedBy, initiatedBy)
+	} catch (e) {
+		console.log(e)
+	}
 }
 
 module.exports = mainCreator
