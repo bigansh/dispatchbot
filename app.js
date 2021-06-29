@@ -8,12 +8,21 @@ const client = new Discord.Client({
 const disHandler = require('./functions/message-handler/disHandler'),
 	reactionHandler = require('./functions/message-handler/reactionHandler')
 
+const categoryCreate = require('./functions/utils/categoryCreate'),
+	requestChannelCreate = require('./functions/utils/requestChannelCreate')
+
 const COMMAND = process.env.COMMAND
 
 client.login(process.env.TOKEN)
 
 client.on('ready', () => {
 	console.log('Bot Online!')
+})
+
+client.on('guildCreate', async (server) => {
+	const categoryId = await categoryCreate(server)
+
+	await requestChannelCreate(server, categoryId)
 })
 
 client.on('message', async (message) => {

@@ -7,17 +7,24 @@ const channelCreate = require('./channelCreate')
  *
  * @param {Discord.Client} client
  * @param {Number} serverId
+ * @param {Number} categoryId
  * @param {Discord.User} requested
  * @param {Discord.User} initiated
  */
 
-const mainCreator = async (client, serverId, requested, initiated) => {
+const mainCreator = async (
+	client,
+	serverId,
+	categoryId,
+	requested,
+	initiated
+) => {
 	try {
-		const server = client.guilds.cache.get(serverId)
-		const categoryId = '859018201722650645'
+		const server = client.guilds.cache.get(serverId),
+			clientId = client.user.id
 
 		if (categoryId)
-			await channelCreate(server, categoryId, requested, initiated)
+			await channelCreate(clientId, server, categoryId, requested, initiated)
 	} catch (e) {
 		console.log(e)
 	}

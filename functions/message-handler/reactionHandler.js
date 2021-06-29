@@ -40,7 +40,10 @@ const reactionHandler = async (client, origin, user) => {
 			const requested = await client.users.fetch(mentions[0]),
 				initiated = await client.users.fetch(mentions[1])
 
-			await mainCreator(client, origin.message.guild.id, requested, initiated)
+			const categoryId = origin.message.channel.parentID,
+				serverId = origin.message.guild.id
+
+			await mainCreator(client, serverId, categoryId, requested, initiated)
 		} else if (!approval) {
 			message.embeds[0].addField('Status', 'Rejected ❌', true)
 			origin.message.edit(message.embeds[0])
