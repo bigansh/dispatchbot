@@ -21,29 +21,26 @@ const reactionHandler = async (client, origin, user) => {
 
 		const mentions = message.embeds[0].description.match(/!?(\d+)/g)
 
-		const requestedBy = await client.users.fetch(mentions[0]),
-			initiatedBy = await client.users.fetch(mentions[1])
+		const requested = mentions[0]
 
-		if (requestedBy.id !== user.id) {
+		if (requested !== user.id) {
 			await reactionRemover(origin.message, user.id)
 
 			return
 		}
 
 		const approval =
-			requestedBy.id === user.id && origin.emoji.name === '✅' ? true : false
+			requested === user.id && origin.emoji.name === '✅' ? true : false
 
 		if (approval) {
 			message.embeds[0].addField('Status', 'Approved ✅', true)
 			origin.message.edit(message.embeds[0])
 			origin.message.reactions.removeAll()
 
-			await mainCreator(
-				client,
-				origin.message.guild.id,
-				requestedBy,
-				initiatedBy
-			)
+			const requested = await client.users.fetch(mentions[0]),
+				initiated = await client.users.fetch(mentions[1])
+
+			await mainCreator(client, origin.message.guild.id, requested, initiated)
 		} else if (!approval) {
 			message.embeds[0].addField('Status', 'Rejected ❌', true)
 			origin.message.edit(message.embeds[0])

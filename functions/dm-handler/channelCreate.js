@@ -5,14 +5,14 @@ const Discord = require('discord.js')
  *
  * @param {Discord.Guild} server
  * @param {Number} categoryId
- * @param {Discord.User} requestedBy
- * @param {Discord.User} initiatedBy
+ * @param {Discord.User} requested
+ * @param {Discord.User} initiated
  */
 
-const channelCreate = async (server, categoryId, requestedBy, initiatedBy) => {
+const channelCreate = async (server, categoryId, requested, initiated) => {
 	try {
 		const channel = await server.channels.create(
-			`${initiatedBy.username} ‎‎‎‎⇆ ${requestedBy.username}`,
+			`${initiated.username} ‎‎‎‎⇆ ${requested.username}`,
 			{
 				parent: categoryId,
 				permissionOverwrites: [
@@ -22,12 +22,12 @@ const channelCreate = async (server, categoryId, requestedBy, initiatedBy) => {
 					},
 					{
 						type: 'member',
-						id: requestedBy.id,
+						id: requested.id,
 						allow: ['VIEW_CHANNEL'],
 					},
 					{
 						type: 'member',
-						id: initiatedBy.id,
+						id: initiated.id,
 						allow: ['VIEW_CHANNEL'],
 					},
 				],
@@ -37,7 +37,7 @@ const channelCreate = async (server, categoryId, requestedBy, initiatedBy) => {
 		const embed = new Discord.MessageEmbed()
 			.setTitle('Confirmation')
 			.setDescription(
-				`As requested, a DM channel has been created for ${requestedBy} & ${initiatedBy}!`
+				`As requested, a DM channel has been created for ${requested} & ${initiated}!`
 			)
 
 		await channel.send(embed)

@@ -4,16 +4,16 @@ const Discord = require('discord.js')
  * A function that creates a role for the requested DM.
  *
  * @param {Discord.Guild} server
- * @param {Discord.User} requestedBy
- * @param {Discord.User} initiatedBy
+ * @param {Discord.User} requested
+ * @param {Discord.User} initiated
  * @returns
  */
 
-const roleCreator = async (server, requestedBy, initiatedBy) => {
+const roleCreator = async (server, requested, initiated) => {
 	try {
 		return await server.roles.create({
 			data: {
-				name: `${initiatedBy.username} ‎‎‎‎⇆ ${requestedBy.username}`,
+				name: `${initiated.username} ‎‎‎‎⇆ ${requested.username}`,
 			},
 		})
 	} catch (e) {
