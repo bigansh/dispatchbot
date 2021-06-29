@@ -7,22 +7,28 @@ const Discord = require('discord.js')
  * @param {Number} categoryId
  * @param {Discord.User} requestedBy
  * @param {Discord.User} initiatedBy
- * @param {Discord.GuildMemberRoleManager} role
  */
 
-const channelCreate = async (
-	server,
-	categoryId,
-	requestedBy,
-	initiatedBy,
-	role
-) => {
+const channelCreate = async (server, categoryId, requestedBy, initiatedBy) => {
 	const channel = await server.channels.create(
 		`${initiatedBy.username} ‎‎‎‎⇆ ${requestedBy.username}`,
 		{
 			parent: categoryId,
 			permissionOverwrites: [
-				{ id: role, allow: role.id, deny: ['VIEW_CHANNEL'] },
+				{
+					id: server.id,
+					deny: ['VIEW_CHANNEL'],
+				},
+				{
+					type: 'member',
+					id: requestedBy.id,
+					allow: ['VIEW_CHANNEL'],
+				},
+				{
+					type: 'member',
+					id: initiatedBy.id,
+					allow: ['VIEW_CHANNEL'],
+				},
 			],
 		}
 	)
