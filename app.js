@@ -8,6 +8,8 @@ const client = new Discord.Client({
 const disHandler = require('./functions/message-handler/disHandler'),
 	reactionHandler = require('./functions/message-handler/reactionHandler')
 
+const COMMAND = process.env.COMMAND
+
 client.login(process.env.TOKEN)
 
 client.on('ready', () => {
@@ -15,7 +17,7 @@ client.on('ready', () => {
 })
 
 client.on('message', async (message) => {
-	if (message.content.startsWith('!dis', 0)) await disHandler(message)
+	if (message.content.startsWith(COMMAND, 0)) await disHandler(message)
 })
 
 client.on('messageReactionAdd', async (origin, user) => {
