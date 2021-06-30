@@ -10,6 +10,16 @@ const disHandler = async (message) => {
 	try {
 		const mentions = message.mentions.users.map((user) => user)
 
+		if (mentions.length === 0) {
+			await message.channel.send(
+				new Discord.MessageEmbed()
+					.setTitle('Request Failed')
+					.setDescription('Hey, please mention the user you want to DM.')
+			)
+
+			return
+		}
+
 		const msg = new Discord.MessageEmbed()
 			.setTitle('DM Request')
 			.setDescription(

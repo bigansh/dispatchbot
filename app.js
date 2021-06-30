@@ -31,6 +31,7 @@ client.on('message', async (message) => {
 
 client.on('messageReactionAdd', async (origin, user) => {
 	if (user.bot) return
+	if (origin.message.author.id !== client.user.id) return
 
 	await reactionHandler(client, origin, user)
 })
