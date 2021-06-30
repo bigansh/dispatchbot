@@ -40,8 +40,11 @@ const reactionHandler = async (client, origin, user) => {
 			const requested = await client.users.fetch(mentions[0]),
 				initiated = await client.users.fetch(mentions[1])
 
-			const categoryId = origin.message.channel.parentID,
-				serverId = origin.message.guild.id
+			const channel = origin.message.guild.channels.cache.filter(
+					(channel) => channel.name === 'request-dm'
+				),
+				serverId = origin.message.guild.id,
+				categoryId = channel.map((channel) => channel.parentID)[0]
 
 			await mainCreator(client, serverId, categoryId, requested, initiated)
 		} else if (!approval) {

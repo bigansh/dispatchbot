@@ -10,7 +10,7 @@ const Discord = require('discord.js')
 const categoryCreate = async (server) => {
 	try {
 		return await server.channels
-			.create('direct-messages', {
+			.create('direct messages', {
 				type: 'category',
 			})
 			.then((category) => category.id)
