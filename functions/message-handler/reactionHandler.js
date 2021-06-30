@@ -10,15 +10,12 @@ const reactionRemover = require('../utils/reactionRemover')
  * @param {Discord.Client} client
  * @param {Discord.MessageReaction} origin
  * @param {Discord.User} user
+ * @param {Discord.Message} message
  * @returns
  */
 
-const reactionHandler = async (client, origin, user) => {
+const reactionHandler = async (client, origin, user, message) => {
 	try {
-		const message = !origin.message.author
-			? await origin.message.fetch()
-			: origin.message
-
 		const mentions = message.embeds[0].description.match(/!?(\d+)/g)
 
 		const requested = mentions[0]
@@ -34,14 +31,15 @@ const reactionHandler = async (client, origin, user) => {
 
 		if (approval) {
 			message.embeds[0].addField('Status', 'Approved ✅', true)
+			
 			origin.message.edit(message.embeds[0])
 			origin.message.reactions.removeAll()
 
 			const requested = await client.users.fetch(mentions[0]),
 				initiated = await client.users.fetch(mentions[1])
 
-			const channel = origin.message.guild.channels.cache.filter(
-					(channel) => channel.name === 'request-dm'
+			const channel = origin.message.guild.channels.cache.filter((channel) =>
+					channel.name.includes('request-dm')
 				),
 				serverId = origin.message.guild.id,
 				categoryId = channel.map((channel) => channel.parentID)[0]

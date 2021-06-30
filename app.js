@@ -6,14 +6,16 @@ const client = new Discord.Client({
 })
 
 const disHandler = require('./functions/message-handler/disHandler'),
-	reactionHandler = require('./functions/message-handler/reactionHandler')
+	reactionHandler = require('./functions/message-handler/reactionHandler'),
+	delHandler = require('./functions/message-handler/delHandler'),
+	delReactionHan = require('./functions/message-handler/delReactionHan')
 
 const categoryCreate = require('./functions/utils/categoryCreate'),
 	requestChannelCreate = require('./functions/utils/requestChannelCreate')
 
-const COMMAND = process.env.COMMAND
+const { COMMAND, TOKEN } = process.env
 
-client.login(process.env.TOKEN)
+client.login(TOKEN)
 
 client.on('ready', () => {
 	console.log('Bot Online!')
@@ -26,12 +28,23 @@ client.on('guildCreate', async (server) => {
 })
 
 client.on('message', async (message) => {
-	if (message.content.startsWith(COMMAND, 0)) await disHandler(message)
+	if (message.content.startsWith(COMMAND, 0)) {
+		if (message.content.includes('dm')) await disHandler(message)
+		else if (message.content.includes('delete')) await delHandler(message)
+	}
 })
 
 client.on('messageReactionAdd', async (origin, user) => {
 	if (user.bot) return
+
+	const message = !origin.message.author
+		? await origin.message.fetch()
+		: origin.message
+
 	if (origin.message.author.id !== client.user.id) return
 
-	await reactionHandler(client, origin, user)
+	if (origin.message.embeds[0].description.includes('DM'))
+		await reactionHandler(client, origin, user, message)
+	else if (origin.message.embeds[0].description.includes('delete'))
+		await delReactionHan(origin, message)
 })

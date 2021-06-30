@@ -1,29 +1,29 @@
 const Discord = require('discord.js')
 
 /**
- *  This function takes care of the !dis user command.
+ * This function handles request for !dis delete command.
  *
  * @param {Discord.Message} message
  */
 
-const disHandler = async (message) => {
+const delHandler = async (message) => {
 	try {
-		const mentions = message.mentions.users.map((user) => user)
+		const mentions = message.mentions.channels.map((channel) => channel.id)
 
 		if (mentions.length === 0) {
 			await message.channel.send(
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
-					.setDescription('Hey, please mention the user you want to DM.')
+					.setDescription('Hey, please mention the channel you want to delete.')
 			)
 
 			return
 		}
 
 		const msg = new Discord.MessageEmbed()
-			.setTitle('DM Request')
+			.setTitle('DM Delete Request')
 			.setDescription(
-				`Hey ${mentions[0]}, user ${message.author} wants to DM you. Please approve or reject.`
+				`Hey, to delete a channel, all the members of the channel have to approve.`
 			)
 
 		const reply = await message.channel.send(msg)
@@ -34,4 +34,4 @@ const disHandler = async (message) => {
 	}
 }
 
-module.exports = disHandler
+module.exports = delHandler
