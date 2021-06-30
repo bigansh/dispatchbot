@@ -11,7 +11,8 @@ const disHandler = require('./functions/message-handler/disHandler'),
 	delReactionHan = require('./functions/message-handler/delReactionHan')
 
 const categoryCreate = require('./functions/utils/categoryCreate'),
-	requestChannelCreate = require('./functions/utils/requestChannelCreate')
+	requestChannelCreate = require('./functions/utils/requestChannelCreate'),
+	notAllowed = require('./functions/utils/notAllowed')
 
 const { COMMAND, TOKEN } = process.env
 
@@ -31,7 +32,11 @@ client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
 		if (message.content.includes('dm')) await disHandler(message)
 		else if (message.content.includes('delete')) {
-			if (!message.channel.name.includes('-⇆-')) return
+			if (!message.channel.name.includes('-⇆-')) {
+				await notAllowed(message)
+
+				return
+			}
 
 			await delHandler(message)
 		}
