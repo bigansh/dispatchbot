@@ -30,7 +30,11 @@ client.on('guildCreate', async (server) => {
 client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
 		if (message.content.includes('dm')) await disHandler(message)
-		else if (message.content.includes('delete')) await delHandler(message)
+		else if (message.content.includes('delete')) {
+			if (!message.channel.name.includes('-⇆-')) return
+
+			await delHandler(message)
+		}
 	}
 })
 
@@ -45,6 +49,9 @@ client.on('messageReactionAdd', async (origin, user) => {
 
 	if (origin.message.embeds[0].description.includes('DM'))
 		await reactionHandler(client, origin, user, message)
-	else if (origin.message.embeds[0].description.includes('delete'))
+	else if (origin.message.embeds[0].description.includes('delete')) {
+		if (!origin.message.channel.name.includes('-⇆-')) return
+
 		await delReactionHan(origin, message)
+	}
 })
