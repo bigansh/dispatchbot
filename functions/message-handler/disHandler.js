@@ -14,7 +14,7 @@ const disHandler = async (message) => {
 			await message.channel.send(
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
-					.setDescription('Hey, you cannot send yourself a DM or a bot.')
+					.setDescription('Hey, you cannot send yourself or a bot a DM.')
 					.setColor('#c98fd9')
 			)
 
