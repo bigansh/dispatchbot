@@ -31,7 +31,7 @@ const reactionHandler = async (client, origin, user, message) => {
 
 		if (approval) {
 			message.embeds[0].addField('Status', 'Approved ✅', true)
-			
+
 			origin.message.edit(message.embeds[0])
 			origin.message.reactions.removeAll()
 
@@ -47,6 +47,7 @@ const reactionHandler = async (client, origin, user, message) => {
 			await mainCreator(client, serverId, categoryId, requested, initiated)
 		} else if (!approval) {
 			message.embeds[0].addField('Status', 'Rejected ❌', true)
+
 			origin.message.edit(message.embeds[0])
 			origin.message.reactions.removeAll()
 		}

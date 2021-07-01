@@ -36,6 +36,7 @@ const channelCreate = async (
 			.setDescription(
 				`As requested, a DM channel has been created for ${requested} & ${initiated}!`
 			)
+			.setColor('#c98fd9')
 
 		await channel.send(embed)
 	} catch (e) {

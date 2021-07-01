@@ -32,13 +32,18 @@ client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
 		if (message.content.includes('dm')) await disHandler(message)
 		else if (message.content.includes('delete')) {
-			if (!message.channel.name.includes('-⇆-')) {
+			if (
+				message.channel.name.includes('-⇆-') &&
+				message.mentions.channels.map((channel) =>
+					channel.name.includes('-⇆-')
+				)[0]
+			)
+				await delHandler(message)
+			else {
 				await notAllowed(message)
 
 				return
 			}
-
-			await delHandler(message)
 		}
 	}
 })
@@ -54,9 +59,6 @@ client.on('messageReactionAdd', async (origin, user) => {
 
 	if (origin.message.embeds[0].description.includes('DM'))
 		await reactionHandler(client, origin, user, message)
-	else if (origin.message.embeds[0].description.includes('delete')) {
-		if (!origin.message.channel.name.includes('-⇆-')) return
-
+	else if (origin.message.embeds[0].description.includes('delete'))
 		await delReactionHan(origin, message)
-	}
 })

@@ -23,7 +23,7 @@ const delReactionHan = async (origin, message) => {
 			origin.message.reactions.removeAll()
 
 			await message.channel.delete('Approved by the members!')
-		} else if (userReactions[1] > 2) {
+		} else if (userReactions[1] > 1) {
 			message.embeds[0].addField('Status', 'Rejected ❌', true)
 
 			origin.message.edit(message.embeds[0])

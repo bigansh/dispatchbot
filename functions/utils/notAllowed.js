@@ -11,8 +11,9 @@ const notAllowed = async (message) => {
 		new Discord.MessageEmbed()
 			.setTitle('Request Failed')
 			.setDescription(
-				'Hey, the requested command is not allowed in this channel. This command is only executable in DM channels.'
+				'Hey, the requested command is not allowed in this channel. This command is only executable in & on DM channels.'
 			)
+			.setColor('#c98fd9')
 	)
 }
 
