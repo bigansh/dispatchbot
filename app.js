@@ -22,7 +22,7 @@ client.login(TOKEN)
 client.on('ready', () => {
 	console.log('Bot Online!')
 
-	client.user.setActivity('!dis help').then((status) => console.log(status))
+	client.user.setActivity('!dis help', { type: 'LISTENING' })
 })
 
 client.on('guildCreate', async (server) => {
