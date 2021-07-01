@@ -35,11 +35,7 @@ client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
 		if (message.content.includes('dm')) await disHandler(message)
 		else if (message.content.includes('del')) {
-			if (
-				message.mentions.channels.map((channel) => channel.name)[0] ===
-				message.channel.name
-			)
-				await delHandler(message)
+			if (message.channel.name.includes('-⇆-')) await delHandler(message)
 			else await notAllowed(message)
 		} else if (message.content.includes('help')) await helpHandler(message)
 	}

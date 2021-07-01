@@ -10,19 +10,6 @@ const delHandler = async (message) => {
 	try {
 		const mentions = message.mentions.channels.map((channel) => channel.id)
 
-		if (mentions.length === 0) {
-			await message.channel.send(
-				new Discord.MessageEmbed()
-					.setTitle('Request Failed')
-					.setDescription(
-						'Hey, please mention the channel name you want to delete.'
-					)
-					.setColor('#c98fd9')
-			)
-
-			return
-		}
-
 		const msg = new Discord.MessageEmbed()
 			.setTitle('DM Delete Request')
 			.setDescription(

@@ -22,7 +22,7 @@ const helpHandler = async (message) => {
 					},
 					{
 						name: 'Delete a DM channel',
-						value: '!dis del #channel-name',
+						value: '!dis del',
 						inline: false,
 					},
 					{
