@@ -10,22 +10,24 @@ const disHandler = async (message) => {
 	try {
 		const mentions = message.mentions.users.map((user) => user)
 
-		if (mentions[0].id === message.author.id || mentions[0].bot) {
+		if (mentions.length === 0) {
 			await message.channel.send(
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
-					.setDescription('Hey, you cannot send yourself or a bot a DM.')
+					.setDescription(
+						'Hey, please mention the user you want to DM whilst making sure that they are present in the server.'
+					)
 					.setColor('#c98fd9')
 			)
 
 			return
 		}
 
-		if (mentions.length === 0) {
+		if (mentions[0].id === message.author.id || mentions[0].bot) {
 			await message.channel.send(
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
-					.setDescription('Hey, please mention the user you want to DM.')
+					.setDescription('Hey, you cannot send yourself or a bot a DM.')
 					.setColor('#c98fd9')
 			)
 

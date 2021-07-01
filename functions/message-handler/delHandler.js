@@ -14,7 +14,9 @@ const delHandler = async (message) => {
 			await message.channel.send(
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
-					.setDescription('Hey, please mention the channel you want to delete.')
+					.setDescription(
+						'Hey, please mention the channel name you want to delete.'
+					)
 					.setColor('#c98fd9')
 			)
 

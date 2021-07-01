@@ -31,12 +31,10 @@ client.on('guildCreate', async (server) => {
 client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
 		if (message.content.includes('dm')) await disHandler(message)
-		else if (message.content.includes('delete')) {
+		else if (message.content.includes('del')) {
 			if (
-				message.channel.name.includes('-⇆-') &&
-				message.mentions.channels.map((channel) =>
-					channel.name.includes('-⇆-')
-				)[0]
+				message.mentions.channels.map((channel) => channel.name)[0] ===
+				message.channel.name
 			)
 				await delHandler(message)
 			else {

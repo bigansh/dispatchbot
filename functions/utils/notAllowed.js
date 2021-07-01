@@ -7,14 +7,18 @@ const Discord = require('discord.js')
  */
 
 const notAllowed = async (message) => {
-	await message.channel.send(
-		new Discord.MessageEmbed()
-			.setTitle('Request Failed')
-			.setDescription(
-				'Hey, the requested command is not allowed in this channel. This command is only executable in & on DM channels.'
-			)
-			.setColor('#c98fd9')
-	)
+	try {
+		await message.channel.send(
+			new Discord.MessageEmbed()
+				.setTitle('Request Failed')
+				.setDescription(
+					'Hey, this command is only executable in & on related DM channels.'
+				)
+				.setColor('#c98fd9')
+		)
+	} catch (e) {
+		console.log(e)
+	}
 }
 
 module.exports = notAllowed
