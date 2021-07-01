@@ -21,6 +21,8 @@ client.login(TOKEN)
 
 client.on('ready', () => {
 	console.log('Bot Online!')
+
+	client.user.setActivity('!dis help').then((status) => console.log(status))
 })
 
 client.on('guildCreate', async (server) => {
