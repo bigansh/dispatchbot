@@ -8,7 +8,8 @@ const client = new Discord.Client({
 const disHandler = require('./functions/message-handler/disHandler'),
 	reactionHandler = require('./functions/message-handler/reactionHandler'),
 	delHandler = require('./functions/message-handler/delHandler'),
-	delReactionHan = require('./functions/message-handler/delReactionHan')
+	delReactionHan = require('./functions/message-handler/delReactionHan'),
+	helpHandler = require('./functions/message-handler/helpHandler')
 
 const categoryCreate = require('./functions/utils/categoryCreate'),
 	requestChannelCreate = require('./functions/utils/requestChannelCreate'),
@@ -37,12 +38,8 @@ client.on('message', async (message) => {
 				message.channel.name
 			)
 				await delHandler(message)
-			else {
-				await notAllowed(message)
-
-				return
-			}
-		}
+			else await notAllowed(message)
+		} else if (message.content.includes('help')) await helpHandler(message)
 	}
 })
 
