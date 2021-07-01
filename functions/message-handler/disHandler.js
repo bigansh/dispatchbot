@@ -10,11 +10,11 @@ const disHandler = async (message) => {
 	try {
 		const mentions = message.mentions.users.map((user) => user)
 
-		if (mentions[0].id === message.author.id) {
+		if (mentions[0].id === message.author.id || mentions[0].bot) {
 			await message.channel.send(
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
-					.setDescription('Hey, you cannot send yourself a DM.')
+					.setDescription('Hey, you cannot send yourself a DM or a bot.')
 					.setColor('#c98fd9')
 			)
 
