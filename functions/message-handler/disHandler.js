@@ -10,14 +10,28 @@ const disHandler = async (message) => {
 	try {
 		const mentions = message.mentions.users.map((user) => user)
 
-		const channels = message.guild.channels.cache
-			.map((channel) => channel.name)
-
-			.filter(
-				(name) =>
+		const channels = message.guild.channels.cache.reduce(
+			(channels, { name }) => {
+				if (
 					name.includes(`${mentions[0].username}`) &&
 					name.includes(`${message.author.username}`)
-			)
+				)
+					channels.push(name)
+
+				return channels
+			},
+			[]
+		)
+
+		// ! Below as same is above reducing the traversal of array twice.
+		// const channels = message.guild.channels.cache
+		// 	.map((channel) => channel.name)
+
+		// 	.filter(
+		// 		(name) =>
+		// 			name.includes(`${mentions[0].username}`) &&
+		// 			name.includes(`${message.author.username}`)
+		// 	)
 
 		if (channels.length !== 0) {
 			const channel = message.guild.channels.cache
