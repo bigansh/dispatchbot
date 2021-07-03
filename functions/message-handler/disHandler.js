@@ -11,9 +11,13 @@ const disHandler = async (message) => {
 		const mentions = message.mentions.users.map((user) => user)
 
 		const channels = message.guild.channels.cache
-			.filter((channel) => channel.name.includes(`${mentions[0].username}`))
-			.filter((channel) => channel.name.includes(`${message.author.username}`))
 			.map((channel) => channel.name)
+
+			.filter(
+				(name) =>
+					name.includes(`${mentions[0].username}`) &&
+					name.includes(`${message.author.username}`)
+			)
 
 		if (channels.length !== 0) {
 			const channel = message.guild.channels.cache
@@ -24,7 +28,7 @@ const disHandler = async (message) => {
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
 					.setDescription('Hey, a DM with the person mentioned already exists.')
-					.addField('DM Channel', `${channel}`)
+					.addField('DM Channel', `${channel}`, false)
 					.setColor('#c98fd9')
 			)
 
