@@ -36,6 +36,18 @@ const channelCreate = async (
 			.setDescription(
 				`As requested, a DM channel has been created for ${requested} & ${initiated}!`
 			)
+			.addFields(
+				{
+					name: 'Delete',
+					value: 'To delete this DM, just type `!dis del` here.',
+					inline: false,
+				},
+				{
+					name: 'Disclaimer',
+					value: 'Please note that admins can see this chat.',
+					inline: false,
+				}
+			)
 			.setColor('#c98fd9')
 
 		await channel.send(embed)

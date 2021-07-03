@@ -23,6 +23,8 @@ const mainCreator = async (
 		const server = client.guilds.cache.get(serverId),
 			clientId = client.user.id
 
+		
+
 		if (categoryId)
 			await channelCreate(clientId, server, categoryId, requested, initiated)
 	} catch (e) {
