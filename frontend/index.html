@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- META -->
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- LINK -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,600;1,400&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="assets/styles/index.css" />
+		<link rel="shortcut icon" type="image/ico" href="assets/images/ICO.ico" />
+
+		<title>Dispatch - Discord Is Now Complete</title>
+	</head>
+	<body>
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-expand-md navbar-light">
+			<div class="container">
+				<a href="#" class="navbar-brand fs-2 mb-0 text-light">Dispatch</a>
+
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbar"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbar">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link fs-5 mb-0 text-light" href="#">Guide</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link fs-5 mb-0 text-light" href="#"
+								>Privacy Policy</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- SHOWCASE -->
+		<section class="p-5">
+			<div
+				class="
+					container
+					text-center text-md-start
+					d-md-flex
+					align-items-center
+					justify-content-between
+				"
+			>
+				<div>
+					<h1>Add server-specific DMs in your Discord server</h1>
+					<p class="lead">A Slack feature all the sever owners disguised</p>
+					<a href="https://rebrand.ly/prj/dispatch/invite" target="_blank">
+						<button class="btn btn-lg text-light" id="showcase-btn">
+							Add To Server
+						</button>
+					</a>
+				</div>
+
+				<img
+					id="showcase-img"
+					class="img-fluid d-none d-sm-block showcase-image"
+					src="assets/images/showcase.svg"
+					alt="#"
+				/>
+			</div>
+		</section>
+
+		<!-- SOCIAL PROOF -->
+		<section id="social-proof" class="p-5">
+			<div class="container text-center text-light">
+				<h3>The Only Bot Enabling Serve Based DMs On Discord</h3>
+				<p class="lead mb-0">
+					Listening to more than 50+ servers, trying to become a part of yours
+					next.
+				</p>
+			</div>
+		</section>
+
+		<!-- FEATURES -->
+		<section class="p-5" id="features">
+			<div class="container text-center mb-4">
+				<h2 id="features-header">Features</h2>
+			</div>
+
+			<div id="carousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button
+						type="button"
+						data-bs-target="#carousel"
+						data-bs-slide-to="0"
+						class="active indicators"
+					></button>
+					<button
+						type="button"
+						data-bs-target="#carousel"
+						data-bs-slide-to="1"
+						class="indicators"
+					></button>
+					<button
+						type="button"
+						data-bs-target="#carousel"
+						data-bs-slide-to="2"
+						class="indicators"
+					></button>
+				</div>
+				<div class="carousel-inner container">
+					<div class="carousel-item active row">
+						<img
+							src="assets/images/dm.png"
+							class="d-block col-7 img-fluid"
+							alt="#"
+						/>
+
+						<div class="col-5">
+							<h3>Easily create a DM request</h3>
+							<p>
+								With the <code class="rounded">!dis dm @user</code> command,
+								create a DM request.
+							</p>
+							<button class="btn text-light" id="showcase-btn">
+								Add To Server
+							</button>
+							<button class="btn btn-outline-light ms-1">Read Docs</button>
+						</div>
+					</div>
+					<div class="carousel-item row">
+						<div class="col-5">
+							<h3>Delete a DM on demand</h3>
+							<p>
+								With the <code class="rounded">!dis del</code> command, delete
+								the DM channel.
+							</p>
+							<button class="btn text-light" id="showcase-btn">
+								Add To Server
+							</button>
+							<button class="btn btn-outline-light ms-1">Read Docs</button>
+						</div>
+
+						<img
+							src="assets/images/delete.png"
+							class="col-7 img-fluid"
+							alt="#"
+						/>
+					</div>
+					<div class="carousel-item row">
+						<img src="assets/images/help.png" class="col-7 img-fluid" alt="#" />
+
+						<div class="col-5">
+							<h3>Access the help menu when stuck</h3>
+							<p>
+								With the <code class="rounded">!dis help</code> command, access
+								the help menu whenever needed.
+							</p>
+							<button class="btn text-light" id="showcase-btn">
+								Add To Server
+							</button>
+							<button class="btn btn-outline-light ms-1">Read Docs</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- SCRIPT -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>

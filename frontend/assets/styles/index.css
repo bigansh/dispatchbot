@@ -1,0 +1,51 @@
+body {
+	font-family: 'Rubik';
+}
+
+.navbar {
+	background-color: #f25cae;
+}
+
+.navbar-brand {
+	font-weight: bold;
+}
+
+#showcase-btn {
+	background-color: #f25cae;
+	font-weight: bold;
+}
+
+#showcase-img {
+	height: 40%;
+	width: 40%;
+}
+
+#social-proof {
+	background-color: #f25cae;
+}
+
+#features-header {
+	color: #f25cae;
+	font-weight: bold;
+}
+
+code {
+	background-color: #f25cae42;
+}
+
+.indicators {
+	background-color: #f25cae;
+	color: #f25cae;
+	border-color: #f25cae;
+}
+
+.btn-outline-light {
+	font-weight: bold;
+	border-color: #f25cae;
+	color: #f25cae;
+}
+
+.btn-outline-light:hover {
+	background-color: #f25cae;
+	color: white;
+}
