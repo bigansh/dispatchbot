@@ -1,0 +1,15 @@
+{
+  "name": "dispatch",
+  "version": "1.0.0",
+  "description": "A discord bot that allows server owners to enable in-server DMs.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "bigansh",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
