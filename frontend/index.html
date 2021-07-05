@@ -13,6 +13,13 @@
 			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 			crossorigin="anonymous"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css"
+			integrity="sha512-xnP2tOaCJnzp2d2IqKFcxuOiVCbuessxM6wuiolT9eeEJCyy0Vhcwa4zQvdrZNVqlqaxXhHqsSV1Ww7T2jSCUQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -44,9 +51,9 @@
 							<a class="nav-link fs-5 mb-0 text-light" href="#">Guide</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link fs-5 mb-0 text-light" href="#"
-								>Privacy Policy</a
-							>
+							<a class="nav-link fs-5 mb-0 text-light" href="#">
+								Privacy Policy
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -73,7 +80,6 @@
 						</button>
 					</a>
 				</div>
-
 				<img
 					id="showcase-img"
 					class="img-fluid d-none d-sm-block showcase-image"
@@ -94,92 +100,194 @@
 			</div>
 		</section>
 
+		<!-- TODO Make better images for the features and add padding above the text for small screens -->
 		<!-- FEATURES -->
 		<section class="p-5" id="features">
-			<div class="container text-center mb-4">
-				<h2 id="features-header">Features</h2>
-			</div>
-
-			<div id="carousel" class="carousel slide" data-bs-ride="carousel">
-				<div class="carousel-indicators">
-					<button
-						type="button"
-						data-bs-target="#carousel"
-						data-bs-slide-to="0"
-						class="active indicators"
-					></button>
-					<button
-						type="button"
-						data-bs-target="#carousel"
-						data-bs-slide-to="1"
-						class="indicators"
-					></button>
-					<button
-						type="button"
-						data-bs-target="#carousel"
-						data-bs-slide-to="2"
-						class="indicators"
-					></button>
-				</div>
-				<div class="carousel-inner container">
-					<div class="carousel-item active row">
-						<img
-							src="assets/images/dm.png"
-							class="d-block col-7 img-fluid"
-							alt="#"
-						/>
-
-						<div class="col-5">
-							<h3>Easily create a DM request</h3>
-							<p>
-								With the <code class="rounded">!dis dm @user</code> command,
-								create a DM request.
-							</p>
-							<a href="test.html">
-								<button class="btn text-light" id="showcase-btn">
-									Add To Server
-								</button></a
-							>
-							<button class="btn btn-outline-light ms-1">Read Docs</button>
-						</div>
+			<div class="container text-center">
+				<h2 id="features-header" class="mb-4">Features</h2>
+				<div id="carousel" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button
+							type="button"
+							data-bs-target="#carousel"
+							data-bs-slide-to="0"
+							class="active indicators"
+						></button>
+						<button
+							type="button"
+							data-bs-target="#carousel"
+							data-bs-slide-to="1"
+							class="indicators"
+						></button>
+						<button
+							type="button"
+							data-bs-target="#carousel"
+							data-bs-slide-to="2"
+							class="indicators"
+						></button>
 					</div>
-					<div class="carousel-item row">
-						<div class="col-5">
-							<h3>Delete a DM on demand</h3>
-							<p>
-								With the <code class="rounded">!dis del</code> command, delete
-								the DM channel.
-							</p>
-							<button class="btn text-light" id="showcase-btn">
-								Add To Server
-							</button>
-							<button class="btn btn-outline-light ms-1">Read Docs</button>
+					<div class="carousel-inner container">
+						<div class="carousel-item active">
+							<div class="row align-items-center">
+								<img
+									src="assets/images/dm.png"
+									class="d-block col-md-7 img-fluid"
+									alt="#"
+								/>
+								<div class="col-md-5">
+									<h3>Easily create a DM request</h3>
+									<p>
+										With the <code class="rounded">!dis dm @user</code> command,
+										create a DM request.
+									</p>
+									<button class="btn text-light" id="showcase-btn">
+										Add To Server
+									</button>
+									<button class="btn btn-outline-light ms-1">Read Docs</button>
+								</div>
+							</div>
 						</div>
-
-						<img
-							src="assets/images/delete.png"
-							class="col-7 img-fluid"
-							alt="#"
-						/>
-					</div>
-					<div class="carousel-item row">
-						<img src="assets/images/help.png" class="col-7 img-fluid" alt="#" />
-
-						<div class="col-5">
-							<h3>Access the help menu when stuck</h3>
-							<p>
-								With the <code class="rounded">!dis help</code> command, access
-								the help menu whenever needed.
-							</p>
-							<button class="btn text-light" id="showcase-btn">
-								Add To Server
-							</button>
-							<button class="btn btn-outline-light ms-1">Read Docs</button>
+						<div class="carousel-item">
+							<div class="row align-items-center">
+								<div class="col-md-5 order-md-1 order-2">
+									<h3>Delete a DM on demand</h3>
+									<p>
+										With the <code class="rounded">!dis del</code> command,
+										delete the DM channel.
+									</p>
+									<button class="btn text-light" id="showcase-btn">
+										Add To Server
+									</button>
+									<button class="btn btn-outline-light ms-1">Read Docs</button>
+								</div>
+								<img
+									src="assets/images/delete.png"
+									class="col-md-7 img-fluid order-md-2 order-1"
+									alt="#"
+								/>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<div class="row align-items-center">
+								<img
+									src="assets/images/help.png"
+									class="col-md-7 img-fluid"
+									alt="#"
+								/>
+								<div class="col-md-5">
+									<h3>Access the help menu when stuck</h3>
+									<p>
+										With the <code class="rounded">!dis help</code> command,
+										access the help menu whenever needed.
+									</p>
+									<button class="btn text-light" id="showcase-btn">
+										Add To Server
+									</button>
+									<button class="btn btn-outline-light ms-1">Read Docs</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+
+		<!-- TODO Add content and polish the accordion even more -->
+		<!-- FAQ -->
+		<section class="p-5" id="faq">
+			<div class="container text-center text-light">
+				<h2 id="faq-header" class="mb-4">Frequently Asked Questions</h2>
+				<div class="accordion w-75 d-inline-block" id="accordion">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingOne">
+							<button
+								class="accordion-button collapsed"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#collapseOne"
+							>
+								Is It Free?
+							</button>
+						</h2>
+						<div
+							id="collapseOne"
+							class="accordion-collapse collapse"
+							data-bs-parent="#accordion"
+						>
+							<div class="accordion-body">
+								Placeholder content for this accordion, which is intended to
+								demonstrate the <code>.accordion-flush</code> class. This is the
+								first item's accordion body.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingTwo">
+							<button
+								class="accordion-button collapsed"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#collapseTwo"
+							>
+								Who Can See The Chat?
+							</button>
+						</h2>
+						<div
+							id="collapseTwo"
+							class="accordion-collapse collapse"
+							data-bs-parent="#accordion"
+						>
+							<div class="accordion-body">
+								Placeholder content for this accordion, which is intended to
+								demonstrate the <code>.accordion-flush</code> class. This is the
+								second item's accordion body. Let's imagine this being filled
+								with some actual content.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingThree">
+							<button
+								class="accordion-button collapsed"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#collapseThree"
+							>
+								Can I Create Group DMs?
+							</button>
+						</h2>
+						<div
+							id="collapseThree"
+							class="accordion-collapse collapse"
+							data-bs-parent="#accordion"
+						>
+							<div class="accordion-body">
+								Placeholder content for this accordion, which is intended to
+								demonstrate the <code>.accordion-flush</code> class. This is the
+								third item's accordion body. Nothing more exciting happening
+								here in terms of content, but just filling up the space to make
+								it look, at least at first glance, a bit more representative of
+								how this would look in a real-world application.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer id="footer" class="p-2">
+			<div class="d-flex align-items-center container">
+				<img src="assets/images/ICO.ico" id="footer-img" alt="#" />
+				<h3 class="mb-0 ps-2" id="footer-header">Dispatch</h3>
+				<p class="lead ms-auto mb-0" id="footer-content">Copyright &copy;</p>
+				<div class="lead ms-auto mb-0">
+					<i class="bi bi-linkedin"></i>
+					<i class="bi bi-twitter mx-2"></i>
+					<i class="bi bi-envelope-open-fill"></i>
+				</div>
+			</div>
+		</footer>
 
 		<!-- SCRIPT -->
 		<script

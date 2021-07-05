@@ -49,3 +49,42 @@ code {
 	background-color: #f25cae;
 	color: white;
 }
+
+#faq {
+	background-color: #f25cae;
+}
+
+#faq-header {
+	font-weight: bold;
+}
+
+.accordion-header button {
+	color: #f25cae;
+}
+
+.accordion-body {
+	color: #f25cae;
+}
+
+.accordion-button:not(.collapsed) {
+	color: #f25cae;
+	background-color: #f25cae42;
+}
+
+#footer-img {
+	height: 70px;
+	width: 70px;
+}
+
+#footer-header {
+	color: #f25cae;
+	font-weight: bold;
+}
+
+#footer-content {
+	color: #f25cae;
+}
+
+.bi {
+	color: #f25cae;
+}
