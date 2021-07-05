@@ -10,14 +10,18 @@ body {
 	font-weight: bold;
 }
 
+h2 {
+	font-weight: bold;
+}
+
 #showcase-btn {
 	background-color: #f25cae;
 	font-weight: bold;
 }
 
 #showcase-img {
-	height: 40%;
-	width: 40%;
+	max-height: 75vh;
+	max-width: 75vw;
 }
 
 #social-proof {
@@ -33,8 +37,12 @@ code {
 	background-color: #f25cae42;
 }
 
+.carousel-indicators [data-bs-target] {
+	background-color: #f25cae;
+}
+
 .carousel-indicators {
-	bottom: -50px;
+	bottom: -30px;
 }
 
 .btn-outline-light {
