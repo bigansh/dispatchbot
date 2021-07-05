@@ -1,0 +1,28 @@
+body {
+	font-family: 'Rubik';
+}
+
+.navbar {
+	background-color: #f25cae;
+}
+
+.navbar-brand {
+	font-weight: bold;
+}
+
+#showcase-btn {
+	background-color: #f25cae;
+	font-weight: bold;
+}
+
+.header {
+	color: #f25cae;
+}
+
+.header-small {
+	color: #c98fd9;
+}
+
+.subheader-small {
+	color: #ecbbd7;
+}
