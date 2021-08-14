@@ -1,0 +1,4 @@
+Allow: /
+Disallow: /docs.html
+
+Sitemap: https://www.dispatchbot.ml/sitemap.xml
