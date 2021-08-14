@@ -64,20 +64,24 @@ code {
 	color: #f25cae;
 }
 
+footer {
+	background-color: #f25cae;
+}
+
 #footer-img {
 	height: 50px;
 	width: 50px;
 }
 
 #footer-header {
-	color: #f25cae;
+	color: white;
 	font-weight: bold;
 }
 
 #footer-content {
-	color: #f25cae;
+	color: white;
 }
 
 .bi {
-	color: #f25cae;
+	color: white;
 }
