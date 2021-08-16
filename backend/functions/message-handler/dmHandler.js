@@ -92,25 +92,18 @@ const disHandler = async (message) => {
 			return
 		}
 
-		// ! Group DM copy.
-		// if (mentions.length >= 1) {
-		// 	const msg = new Discord.MessageEmbed()
-		// 		.setTitle('DM Request')
-		// 		.setDescription(
-		// 			`Folks, user ${
-		// 				message.author
-		// 			} wants to create a group DM between ${mentions.join(
-		// 				', '
-		// 			)}. If everyone approves, a DM will be created.`
-		// 		)
-		// 		.setColor('#c98fd9')
+		if (mentions.length > 1) {
+			await message.channel.send(
+				new Discord.MessageEmbed()
+					.setTitle('Request Failed')
+					.setDescription(
+						`Hey, you mentioned more than one user. If you want to create a group DM, please use the\`!dis gdm\` command.`
+					)
+					.setColor('#c98fd9')
+			)
 
-		// 	const reply = await message.channel.send(msg)
-
-		// 	await Promise.all([reply.react('✅'), reply.react('❌')])
-
-		// 	return
-		// }
+			return
+		}
 	} catch (e) {
 		console.log(e)
 	}

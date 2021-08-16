@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 
-const mainCreator = require('../dm-handler/mainCreator')
+const mainCreator = require('../channel-handler/mainCreator')
 
 const reactionRemover = require('../utils/reactionRemover')
 

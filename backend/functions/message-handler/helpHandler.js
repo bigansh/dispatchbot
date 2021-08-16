@@ -17,17 +17,22 @@ const helpHandler = async (message) => {
 				.addFields([
 					{
 						name: 'DM a user',
-						value: '!dis dm @user',
+						value: '`!dis dm @user`',
+						inline: false,
+					},
+					{
+						name: 'DM a group',
+						value: '`!dis gdm @user, @user, etc.`',
 						inline: false,
 					},
 					{
 						name: 'Delete a DM channel',
-						value: '!dis del',
+						value: '`!dis del`',
 						inline: false,
 					},
 					{
 						name: 'Menu',
-						value: '!dis help',
+						value: '`!dis help`',
 						inline: false,
 					},
 				])

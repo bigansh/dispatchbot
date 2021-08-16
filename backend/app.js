@@ -5,11 +5,13 @@ const client = new Discord.Client({
 	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 })
 
-const disHandler = require('./functions/message-handler/disHandler'),
-	reactionHandler = require('./functions/message-handler/reactionHandler'),
+const dmHandler = require('./functions/message-handler/dmHandler'),
+	dmReactionHandler = require('./functions/message-handler/dmReactionHandler'),
 	delHandler = require('./functions/message-handler/delHandler'),
 	delReactionHan = require('./functions/message-handler/delReactionHan'),
-	helpHandler = require('./functions/message-handler/helpHandler')
+	helpHandler = require('./functions/message-handler/helpHandler'),
+	gdmHandler = require('./functions/message-handler/gdmHandler'),
+	gdmReactionHandler = require('./functions/message-handler/gdmReactionHandler')
 
 const categoryCreate = require('./functions/utils/categoryCreate'),
 	requestChannelCreate = require('./functions/utils/requestChannelCreate'),
@@ -39,7 +41,8 @@ client.on('guildCreate', async (server) => {
 
 client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
-		if (message.content.includes('dm')) await disHandler(message)
+		if (message.content.includes('gdm')) await gdmHandler(message)
+		else if (message.content.includes('dm')) await dmHandler(message)
 		else if (message.content.includes('del')) {
 			if (message.channel.name.includes('-⇆-')) await delHandler(message)
 			else await notAllowed(message)
@@ -54,10 +57,16 @@ client.on('messageReactionAdd', async (origin, user) => {
 		? await origin.message.fetch()
 		: origin.message
 
+	console.log(origin.message.author.id, client.user.id)
+
 	if (origin.message.author.id !== client.user.id) return
 
-	if (origin.message.embeds[0].description.includes('DM'))
-		await reactionHandler(client, origin, user, message)
+	// TODO Fix other emoji reactions rejected bug.
+
+	if (origin.message.embeds[0].description.includes('group DM'))
+		await gdmReactionHandler(client, origin, user, message)
+	else if (origin.message.embeds[0].description.includes('DM'))
+		await dmReactionHandler(client, origin, user, message)
 	else if (origin.message.embeds[0].description.includes('delete'))
 		await delReactionHan(origin, message)
 })
