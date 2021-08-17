@@ -10,7 +10,7 @@ const helpHandler = async (message) => {
 	try {
 		await message.channel.send(
 			new Discord.MessageEmbed()
-				.setTitle('Dispatch Help')
+				.setTitle('Help')
 				.setDescription(
 					'Hey, all the commands that this bot can understand are listed below.'
 				)

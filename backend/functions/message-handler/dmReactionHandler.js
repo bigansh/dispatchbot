@@ -26,10 +26,12 @@ const reactionHandler = async (client, origin, user, message) => {
 			return
 		}
 
-		const approval =
-			requested === user.id && origin.emoji.name === '✅' ? true : false
+		let approval
 
-		if (approval) {
+		if (origin.emoji.name === '❌') approval = false
+		else if (origin.emoji.name === '✅') approval = true
+
+		if (approval === true) {
 			message.embeds[0].addField('Status', 'Approved ✅', true)
 
 			origin.message.edit(message.embeds[0])
@@ -44,8 +46,17 @@ const reactionHandler = async (client, origin, user, message) => {
 				serverId = origin.message.guild.id,
 				categoryId = channel.map((channel) => channel.parentID)[0]
 
-			await mainCreator(client, serverId, categoryId, requested, initiated)
-		} else if (!approval) {
+			await mainCreator(
+				client,
+				serverId,
+				categoryId,
+				requested,
+				initiated,
+				(members = undefined)
+			)
+
+			return
+		} else if (approval === false) {
 			message.embeds[0].addField('Status', 'Rejected ❌', false)
 
 			origin.message.edit(message.embeds[0])

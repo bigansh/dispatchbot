@@ -14,8 +14,12 @@ const disHandler = async (message) => {
 			const channels = message.guild.channels.cache.reduce(
 				(channels, { name }) => {
 					if (
-						name.includes(`${mentions[0].username}`) &&
-						name.includes(`${message.author.username}`)
+						name.includes(
+							`${mentions[0].username}-‎‎‎‎⇆-${message.author.username}`
+						) ||
+						name.includes(
+							`${message.author.username}-‎‎‎‎⇆-${mentions[0].username}`
+						)
 					)
 						channels.push(name)
 
@@ -30,8 +34,12 @@ const disHandler = async (message) => {
 
 			// 	.filter(
 			// 		(name) =>
-			// 			name.includes(`${mentions[0].username}`) &&
-			// 			name.includes(`${message.author.username}`)
+			// 			name.includes(
+			// 				`${mentions[0].username}-‎‎‎‎⇆-${message.author.username}`
+			// 			) ||
+			// 			name.includes(
+			// 				`${message.author.username}-‎‎‎‎⇆-${mentions[0].username}`
+			// 			)
 			// 	)
 
 			if (channels.length !== 0) {
@@ -97,7 +105,7 @@ const disHandler = async (message) => {
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
 					.setDescription(
-						`Hey, you mentioned more than one user. If you want to create a group DM, please use the\`!dis gdm\` command.`
+						`Hey, you mentioned more than one user. If you want to create a group DM, please use the \`!dis gdm\` command.`
 					)
 					.setColor('#c98fd9')
 			)

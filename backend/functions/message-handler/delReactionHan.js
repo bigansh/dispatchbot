@@ -14,10 +14,12 @@ const delReactionHan = async (origin, message) => {
 			(reaction) => reaction.count
 		)
 
-		const approval = userReactions[0] > 2 ? true : false
+		const members = message.channel.name.match(/[a-z]+/gi)
+
+		const approval = userReactions[0] - 1 === members.length ? true : false
 
 		if (approval) {
-			message.embeds[0].addField('Status', 'Approved ✅', true)
+			message.embeds[0].addField('Status', 'Approved ✅', false)
 
 			origin.message.edit(message.embeds[0])
 			origin.message.reactions.removeAll()

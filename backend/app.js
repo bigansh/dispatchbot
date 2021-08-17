@@ -57,11 +57,7 @@ client.on('messageReactionAdd', async (origin, user) => {
 		? await origin.message.fetch()
 		: origin.message
 
-	console.log(origin.message.author.id, client.user.id)
-
 	if (origin.message.author.id !== client.user.id) return
-
-	// TODO Fix other emoji reactions rejected bug.
 
 	if (origin.message.embeds[0].description.includes('group DM'))
 		await gdmReactionHandler(client, origin, user, message)
