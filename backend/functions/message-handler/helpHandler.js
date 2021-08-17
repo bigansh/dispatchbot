@@ -31,7 +31,7 @@ const helpHandler = async (message) => {
 						inline: false,
 					},
 					{
-						name: 'Menu',
+						name: 'Help',
 						value: '`!dis help`',
 						inline: false,
 					},
