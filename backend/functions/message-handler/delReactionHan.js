@@ -16,7 +16,11 @@ const delReactionHan = async (origin, message) => {
 
 		const members = message.channel.name.match(/[a-z]+/gi)
 
+		console.log(members)
+
 		const approval = userReactions[0] - 1 === members.length ? true : false
+
+		console.log(approval)
 
 		if (approval) {
 			message.embeds[0].addField('Status', 'Approved ✅', false)
