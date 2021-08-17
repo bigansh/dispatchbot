@@ -139,14 +139,27 @@
 					"
 				>
 					<div class="col-md-5">
-						<h2>A Discord Bot That Allows Per Server Based DMs</h2>
-						<p class="lead">
-							With this feature added, Discord is now superior to Slack. Discord
-							is now complete.
+						<h1 class="fw-bold">Change How You Use Your Discord Server</h1>
+						<p class="lead fw-normal">
+							Enable personal DMs, group DMs, breakout rooms, etc. in a specific
+							server for free.
 						</p>
-						<a href="https://redy.cf/dispatch/invite" target="_blank">
-							<button class="btn btn-lg text-light" id="showcase-btn">
+						<a
+							href="https://redy.cf/dispatch/invite/bot"
+							class="text-decoration-none"
+							target="_blank"
+						>
+							<button class="btn btn-lg text-light m-2 ms-0" id="showcase-btn">
 								Add To Server
+							</button>
+						</a>
+						<a
+							href="https://redy.cf/dispatch/invite/server"
+							class="text-decoration-none"
+							target="_blank"
+						>
+							<button class="btn btn-lg btn-outline-light">
+								Join Our Server
 							</button>
 						</a>
 					</div>
@@ -192,6 +205,12 @@
 							data-bs-slide-to="2"
 							class="indicators"
 						></button>
+						<button
+							type="button"
+							data-bs-target="#carousel"
+							data-bs-slide-to="3"
+							class="indicators"
+						></button>
 					</div>
 					<div class="carousel-inner container">
 						<div class="carousel-item active mb-md-0 mb-1">
@@ -209,7 +228,7 @@
 										requested user approves your request.
 									</p>
 									<a
-										href="https://redy.cf/dispatch/invite"
+										href="https://redy.cf/dispatch/invite/bot"
 										class="text-decoration-none"
 										target="_blank"
 									>
@@ -235,7 +254,7 @@
 										request, the channel gets deleted.
 									</p>
 									<a
-										href="https://redy.cf/dispatch/invite"
+										href="https://redy.cf/dispatch/invite/bot"
 										target="_blank"
 										class="text-decoration-none"
 									>
@@ -269,7 +288,7 @@
 										the command the bot understands.
 									</p>
 									<a
-										href="https://redy.cf/dispatch/invite"
+										href="https://redy.cf/dispatch/invite/bot"
 										target="_blank"
 										class="text-decoration-none"
 									>
@@ -281,6 +300,39 @@
 										<button class="btn btn-outline-light m-2">Read Docs</button>
 									</a> -->
 								</div>
+							</div>
+						</div>
+						<div class="carousel-item mb-md-0 mb-1">
+							<div class="row align-items-center">
+								<div
+									class="col-md-5 mt-md-0 mt-2 order-md-1 text-md-start order-2"
+								>
+									<h3>Create Group DMs</h3>
+									<p>
+										With the
+										<code class="rounded">!dis gdm @user, @user</code> command,
+										you can request for a group DM. If all the users mentioned
+										accept the request, a channel is created only visible to the
+										mentioned members.
+									</p>
+									<a
+										href="https://redy.cf/dispatch/invite/bot"
+										target="_blank"
+										class="text-decoration-none"
+									>
+										<button class="btn text-light" id="showcase-btn">
+											Add To Server
+										</button>
+									</a>
+									<!-- <a href="docs.html">
+										<button class="btn btn-outline-light m-2">Read Docs</button>
+									</a> -->
+								</div>
+								<img
+									src="assets/images/gdm.png"
+									class="col-md-7 img-fluid order-md-2 order-1"
+									alt="#"
+								/>
 							</div>
 						</div>
 					</div>
@@ -322,12 +374,12 @@
 					<div class="col-md">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Can I create a DM group?</h5>
+								<h5 class="card-title">Can I delete a channel?</h5>
 								<p class="card-text">
-									With out current tech-stack, it is possible but not yet
-									applicable. We are working on this feature though. Whenever we
-									do, we will update it and send a message across all the
-									servers to let people know.
+									Deleting a channel is just as easy as creating one. You just
+									need to create a request for the same using the
+									<code>!dis del</code> command. Once all or more than have the
+									members agree, the channel is deleted.
 								</p>
 							</div>
 						</div>
