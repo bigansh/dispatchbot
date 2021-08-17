@@ -18,7 +18,7 @@ const delReactionHan = async (origin, message) => {
 
 		console.log(members)
 
-		const approval = userReactions[0] - 1 === members.length ? true : false
+		const approval = userReactions[0] - 1 >= members.length / 2 ? true : false
 
 		console.log(approval)
 
