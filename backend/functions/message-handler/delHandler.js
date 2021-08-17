@@ -8,12 +8,10 @@ const Discord = require('discord.js')
 
 const delHandler = async (message) => {
 	try {
-		const mentions = message.mentions.channels.map((channel) => channel.id)
-
 		const msg = new Discord.MessageEmbed()
 			.setTitle('DM Delete Request')
 			.setDescription(
-				`Hey, to delete a channel, all the members of the channel have to approve.`
+				`Hey, to delete a channel, more than half or all the members of the channel have to approve.`
 			)
 			.setColor('#c98fd9')
 
