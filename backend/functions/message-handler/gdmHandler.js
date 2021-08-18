@@ -23,25 +23,23 @@ const gdmHandler = async (message) => {
 			return
 		}
 
-		mentions.forEach(async (user) => {
-			if (user.bot) {
-				await message.channel.send(
-					new Discord.MessageEmbed()
-						.setTitle('Request Failed')
-						.setDescription('Hey, you cannot send yourself or a bot a DM.')
-						.setColor('#c98fd9')
-				)
+		if (mentions.some((user) => user.bot || user.id === message.author.id)) {
+			await message.channel.send(
+				new Discord.MessageEmbed()
+					.setTitle('Request Failed')
+					.setDescription('Hey, you cannot send yourself or a bot a DM.')
+					.setColor('#c98fd9')
+			)
 
-				return
-			}
-		})
+			return
+		}
 
 		if (mentions.length === 1) {
 			await message.channel.send(
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
 					.setDescription(
-						`Hey you only mentioned a single user. If you want to message a single user, please use the \`!dis dm\` command.`
+						'Hey you only mentioned a single user. If you want to message a single user, please use the \`!dis dm\` command.'
 					)
 					.setColor('#c98fd9')
 			)
