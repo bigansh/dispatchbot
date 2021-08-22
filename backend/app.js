@@ -15,7 +15,8 @@ const dmHandler = require('./functions/message-handler/dmHandler'),
 
 const categoryCreate = require('./functions/utils/categoryCreate'),
 	requestChannelCreate = require('./functions/utils/requestChannelCreate'),
-	notAllowed = require('./functions/utils/notAllowed')
+	notAllowed = require('./functions/utils/notAllowed'),
+	coolDown = require('./functions/utils/coolDown')
 
 const { COMMAND, TOKEN } = process.env
 
@@ -39,30 +40,54 @@ client.on('guildCreate', async (server) => {
 	})
 })
 
+const requestMap = new Map()
+
 client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
-		if (message.content.includes('dm')) {
-			if (message.channel.name.includes('request-dm')) {
-				if (message.content.includes('gdm')) await gdmHandler(message)
-				else await dmHandler(message)
-			} else {
-				const channel = message.guild.channels.cache
-					.filter((channel) => channel.name.includes('request-dm'))
-					.map((channel) => channel)[0]
+		const user = message.author.id
 
-				await message.channel.send(
-					new Discord.MessageEmbed()
-						.setTitle('Request Failed')
-						.setDescription(
-							`Hey, this command is only executable in the ${channel} channel.`
-						)
-						.setColor('#c98fd9')
-				)
-			}
-		} else if (message.content.includes('del')) {
-			if (message.channel.name.includes('-⇆-')) await delHandler(message)
-			else await notAllowed(message)
-		} else if (message.content.includes('help')) await helpHandler(message)
+		let first = false
+
+		if (!requestMap.has(user)) {
+			requestMap.set(user, Date.now())
+
+			first = true
+		}
+
+		const previousRequestTime = requestMap.get(user),
+			currentRequestTime = Date.now()
+
+		const timeGap = (currentRequestTime - previousRequestTime) / 1000
+
+		if (timeGap < 10 && first === false) return
+		else if (timeGap >= 10 || first === true) {
+			requestMap.set(user, currentRequestTime)
+
+			setTimeout(() => requestMap.delete(user), 1000 * 10)
+
+			if (message.content.includes('dm')) {
+				if (message.channel.name.includes('request-dm')) {
+					if (message.content.includes('gdm')) await gdmHandler(message)
+					else await dmHandler(message)
+				} else {
+					const channel = message.guild.channels.cache
+						.filter((channel) => channel.name.includes('request-dm'))
+						.map((channel) => channel)[0]
+
+					await message.channel.send(
+						new Discord.MessageEmbed()
+							.setTitle('Request Failed')
+							.setDescription(
+								`Hey, this command is only executable in the ${channel} channel.`
+							)
+							.setColor('#c98fd9')
+					)
+				}
+			} else if (message.content.includes('del')) {
+				if (message.channel.name.includes('-⇆-')) await delHandler(message)
+				else await notAllowed(message)
+			} else if (message.content.includes('help')) await helpHandler(message)
+		}
 	}
 })
 

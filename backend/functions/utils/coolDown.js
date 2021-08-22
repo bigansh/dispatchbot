@@ -1,28 +1,37 @@
-const coolDown = new Map()
+const Discord = require('discord.js')
 
-if (!coolDown.has(COMMAND)) coolDown.set(COMMAND, new Discord.Collection())
+const requestMap = new Map()
 
-const currentTime = Date.now(),
-	timeStamp = coolDown.get(COMMAND),
-	coolDownTime = 1000 * 10
+/**
+ * A function to manage cool down.
+ *
+ * @param {Discord.Message} message
+ */
 
-if (timeStamp.has(message.author.id)) {
-	const expire = timeStamp.get(message.author.id) + coolDownTime
+const coolDown = async (message) => {
+	const user = message.author.id
 
-	if (currentTime < expire) {
-		const timeLeft = (expire - currentTime) / 1000
+	let first = false
 
-		return message.channel.send(
-			new Discord.MessageEmbed()
-				.setTitle('Request Failed')
-				.setDescription(
-					`Hey, please wait for at least ${timeLeft} seconds before using the command.`
-				)
-				.setColor('#c98fd9')
-		)
+	if (!requestMap.has(user)) {
+		requestMap.set(user, Date.now())
+
+		first = true
+	}
+
+	const previousRequestTime = requestMap.get(user),
+		currentRequestTime = Date.now()
+
+	const timeGap = (currentRequestTime - previousRequestTime) / 1000
+
+	if (timeGap < 10 && first === false) return false
+	else if (timeGap >= 10 || first === true) {
+		requestMap.set(user, currentRequestTime)
+
+		setTimeout(() => requestMap.delete(user), 1000 * 10)
+
+		return true
 	}
 }
 
-timeStamp.set(message.author.id, currentTime)
-
-setTimeout(() => timeStamp.delete(message.author.id), coolDownTime)
+module.exports = coolDown
