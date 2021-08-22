@@ -1,7 +1,8 @@
 const Discord = require('discord.js')
 
 /**
- *
+ * A function used to create a group DM channel.
+ * 
  * @param {Number} clientId
  * @param {Discord.Guild} server
  * @param {Number} categoryId

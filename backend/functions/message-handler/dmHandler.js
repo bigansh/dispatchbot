@@ -15,10 +15,10 @@ const disHandler = async (message) => {
 				(channels, { name }) => {
 					if (
 						name.includes(
-							`${mentions[0].username}-‎‎‎‎⇆-${message.author.username}`
+							`${mentions[0].username}-⇆-${message.author.username}`
 						) ||
 						name.includes(
-							`${message.author.username}-‎‎‎‎⇆-${mentions[0].username}`
+							`${message.author.username}-⇆-${mentions[0].username}`
 						)
 					)
 						channels.push(name)
