@@ -11,7 +11,7 @@ const requestChannelCreate = async (server, categoryId) => {
 	try {
 		await server.channels.create('request-dm', {
 			parent: categoryId,
-			rateLimitPerUser: 1000 * 10,
+			rateLimitPerUser: 10,
 		})
 	} catch (e) {
 		console.log(e)
