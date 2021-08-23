@@ -25,7 +25,7 @@ client.login(TOKEN)
 client.on('ready', () => {
 	console.log('Bot Online!')
 
-	client.user.setActivity(`!dis help in ${client.guilds.cache.size} servers`, {
+	client.user.setActivity(`${COMMAND} help in ${client.guilds.cache.size} servers`, {
 		type: 'LISTENING',
 	})
 })
@@ -35,7 +35,7 @@ client.on('guildCreate', async (server) => {
 
 	await requestChannelCreate(server, categoryId)
 
-	client.user.setActivity(`!dis help in ${client.guilds.cache.size} servers`, {
+	client.user.setActivity(`${COMMAND} help in ${client.guilds.cache.size} servers`, {
 		type: 'LISTENING',
 	})
 })
