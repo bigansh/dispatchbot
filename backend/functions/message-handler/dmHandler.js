@@ -8,7 +8,8 @@ const Discord = require('discord.js')
 
 const disHandler = async (message) => {
 	try {
-		const mentions = message.mentions.users.map((user) => user)
+		const mentions = message.mentions.users.map((user) => user),
+			reason = message.content.match(/([a-z]+( [a-z]+)+)/gi)[1]
 
 		if (mentions.length > 0) {
 			const channels = message.guild.channels.cache.reduce(
@@ -92,6 +93,8 @@ const disHandler = async (message) => {
 					`Hey ${mentions[0]}, user ${message.author} wants to DM you. Please approve or reject.`
 				)
 				.setColor('#c98fd9')
+
+			if (reason) msg.addField('Reason', reason, false)
 
 			const reply = await message.channel.send(msg)
 

@@ -9,6 +9,7 @@ const channelCreate = require('./channelCreate'),
  * @param {Discord.Client} client
  * @param {Number} serverId
  * @param {Number} categoryId
+ * @param {String} reason
  * @param {Discord.User} requested
  * @param {Discord.User} initiated
  * @param {Array<Discord.User>} mentions
@@ -18,6 +19,7 @@ const mainCreator = async (
 	client,
 	serverId,
 	categoryId,
+	reason = undefined,
 	requested = undefined,
 	initiated = undefined,
 	mentions = undefined
@@ -27,9 +29,16 @@ const mainCreator = async (
 			clientId = client.user.id
 
 		if (requested && initiated)
-			await channelCreate(clientId, server, categoryId, requested, initiated)
+			await channelCreate(
+				clientId,
+				server,
+				categoryId,
+				requested,
+				initiated,
+				reason
+			)
 		else if (mentions) {
-			await gdmChannelCreate(clientId, server, categoryId, mentions)
+			await gdmChannelCreate(clientId, server, categoryId, mentions, reason)
 		}
 	} catch (e) {
 		console.log(e)

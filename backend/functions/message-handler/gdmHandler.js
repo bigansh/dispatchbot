@@ -8,7 +8,8 @@ const Discord = require('discord.js')
 
 const gdmHandler = async (message) => {
 	try {
-		const mentions = message.mentions.users.map((user) => user)
+		const mentions = message.mentions.users.map((user) => user),
+			reason = message.content.match(/([a-z]+( [a-z]+)+)/gi)[1]
 
 		if (mentions.length === 0) {
 			await message.channel.send(
@@ -39,7 +40,7 @@ const gdmHandler = async (message) => {
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
 					.setDescription(
-						'Hey you only mentioned a single user. If you want to message a single user, please use the \`!dis dm\` command.'
+						'Hey you only mentioned a single user. If you want to message a single user, please use the `!dis dm` command.'
 					)
 					.setColor('#c98fd9')
 			)
@@ -58,6 +59,8 @@ const gdmHandler = async (message) => {
 					)}. If everyone approves, a DM will be created.`
 				)
 				.setColor('#c98fd9')
+
+			if (reason) msg.addField('Reason', reason, false)
 
 			const reply = await message.channel.send(msg)
 

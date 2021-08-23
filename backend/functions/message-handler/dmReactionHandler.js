@@ -16,9 +16,15 @@ const reactionRemover = require('../utils/reactionRemover')
 
 const reactionHandler = async (client, origin, user, message) => {
 	try {
+		let reason = undefined
+
 		const mentions = message.embeds[0].description.match(/!?(\d+)/g)
 
 		const requested = mentions[0]
+
+		if (message.embeds[0].fields[0]) {
+			reason = message.embeds[0].fields[0].value
+		}
 
 		if (requested !== user.id) {
 			await reactionRemover(origin.message, user.id)
@@ -50,6 +56,7 @@ const reactionHandler = async (client, origin, user, message) => {
 				client,
 				serverId,
 				categoryId,
+				reason,
 				requested,
 				initiated,
 				(members = undefined)

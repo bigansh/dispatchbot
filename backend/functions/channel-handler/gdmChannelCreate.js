@@ -2,14 +2,21 @@ const Discord = require('discord.js')
 
 /**
  * A function used to create a group DM channel.
- * 
+ *
  * @param {Number} clientId
  * @param {Discord.Guild} server
  * @param {Number} categoryId
  * @param {Array<Discord.User>} mentions
+ * @param {String} reason
  */
 
-const gdmChannelCreate = async (clientId, server, categoryId, mentions) => {
+const gdmChannelCreate = async (
+	clientId,
+	server,
+	categoryId,
+	mentions,
+	reason = undefined
+) => {
 	try {
 		const channel = await server.channels.create(
 			mentions.map((user) => user.username).join(' ‎‎‎‎⇆ '),
@@ -24,6 +31,8 @@ const gdmChannelCreate = async (clientId, server, categoryId, mentions) => {
 						allow: ['VIEW_CHANNEL'],
 					})),
 				],
+				reason: reason,
+				topic: reason
 			}
 		)
 

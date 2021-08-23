@@ -16,11 +16,17 @@ const reactionRemover = require('../utils/reactionRemover')
 
 const gdmReactionHandler = async (client, origin, user, message) => {
 	try {
+		let reason = undefined
+
 		const mentions = message.embeds[0].description.match(/!?(\d+)/g)
 
 		const requestedUsers = [...mentions]
 
 		requestedUsers.splice(0, 1)
+
+		if (message.embeds[0].fields[0]) {
+			reason = message.embeds[0].fields[0].value
+		}
 
 		if (!requestedUsers.includes(user.id)) {
 			await reactionRemover(origin.message, user.id)
@@ -64,6 +70,7 @@ const gdmReactionHandler = async (client, origin, user, message) => {
 				client,
 				serverId,
 				categoryId,
+				reason,
 				(requested = undefined),
 				(initiated = undefined),
 				members

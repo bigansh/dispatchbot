@@ -17,12 +17,12 @@ const helpHandler = async (message) => {
 				.addFields([
 					{
 						name: 'DM a user',
-						value: '`!dis dm @user`',
+						value: '`!dis dm @user reason(optional)`',
 						inline: false,
 					},
 					{
 						name: 'DM a group',
-						value: '`!dis gdm @user, @user, etc.`',
+						value: '`!dis gdm @user, @user, etc. reason(optional)`',
 						inline: false,
 					},
 					{

@@ -8,6 +8,7 @@ const Discord = require('discord.js')
  * @param {Number} categoryId
  * @param {Discord.User} requested
  * @param {Discord.User} initiated
+ * @param {String} reason
  */
 
 const channelCreate = async (
@@ -15,7 +16,8 @@ const channelCreate = async (
 	server,
 	categoryId,
 	requested,
-	initiated
+	initiated,
+	reason = undefined
 ) => {
 	try {
 		const channel = await server.channels.create(
@@ -28,6 +30,8 @@ const channelCreate = async (
 					{ type: 'member', id: initiated.id, allow: ['VIEW_CHANNEL'] },
 					{ type: 'member', id: clientId, allow: ['VIEW_CHANNEL'] },
 				],
+				reason: reason,
+				topic: reason,
 			}
 		)
 

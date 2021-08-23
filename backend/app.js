@@ -40,7 +40,8 @@ client.on('guildCreate', async (server) => {
 	})
 })
 
-const requestMap = new Map()
+const requestMap = new Map(),
+	sentMap = new Map()
 
 client.on('message', async (message) => {
 	if (message.content.startsWith(COMMAND, 0)) {
@@ -50,6 +51,7 @@ client.on('message', async (message) => {
 
 		if (!requestMap.has(user)) {
 			requestMap.set(user, Date.now())
+			sentMap.set(user, false)
 
 			first = true
 		}
@@ -59,11 +61,28 @@ client.on('message', async (message) => {
 
 		const timeGap = (currentRequestTime - previousRequestTime) / 1000
 
-		if (timeGap < 10 && first === false) return
-		else if (timeGap >= 10 || first === true) {
+		if (timeGap < 10 && first === false) {
+			if (!sentMap.get(user)) {
+				await message.channel.send(
+					new Discord.MessageEmbed()
+						.setTitle('Request Failed')
+						.setDescription(
+							'Hey, please wait at least 10 seconds before sending another request.'
+						)
+						.setColor('#c98fd9')
+				)
+
+				sentMap.set(user, true)
+
+				return
+			} else return
+		} else if (timeGap >= 10 || first === true) {
 			requestMap.set(user, currentRequestTime)
 
-			setTimeout(() => requestMap.delete(user), 1000 * 10)
+			setTimeout(() => {
+				requestMap.delete(user)
+				sentMap.delete(user)
+			}, 1000 * 10)
 
 			if (message.content.includes('dm')) {
 				if (message.channel.name.includes('request-dm')) {
