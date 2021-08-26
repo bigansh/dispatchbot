@@ -25,9 +25,12 @@ client.login(TOKEN)
 client.on('ready', () => {
 	console.log('Bot Online!')
 
-	client.user.setActivity(`${COMMAND} help in ${client.guilds.cache.size} servers`, {
-		type: 'LISTENING',
-	})
+	client.user.setActivity(
+		`${COMMAND} help in ${client.guilds.cache.size} servers`,
+		{
+			type: 'LISTENING',
+		}
+	)
 })
 
 client.on('guildCreate', async (server) => {
@@ -35,9 +38,12 @@ client.on('guildCreate', async (server) => {
 
 	await requestChannelCreate(server, categoryId)
 
-	client.user.setActivity(`${COMMAND} help in ${client.guilds.cache.size} servers`, {
-		type: 'LISTENING',
-	})
+	client.user.setActivity(
+		`${COMMAND} help in ${client.guilds.cache.size} servers`,
+		{
+			type: 'LISTENING',
+		}
+	)
 })
 
 const requestMap = new Map(),
@@ -106,6 +112,15 @@ client.on('message', async (message) => {
 				if (message.channel.name.includes('-⇆-')) await delHandler(message)
 				else await notAllowed(message)
 			} else if (message.content.includes('help')) await helpHandler(message)
+			else
+				await message.channel.send(
+					new Discord.MessageEmbed()
+						.setTitle('Request Failed')
+						.setDescription(
+							'Hey, no such command exists. Please use the `!dis help` command to learn more about the available commands.'
+						)
+						.setColor('#c98fd9')
+				)
 		}
 	}
 })
