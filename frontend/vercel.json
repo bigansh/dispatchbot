@@ -1,0 +1,16 @@
+{
+    "trailingSlash": false,
+    "redirects": [
+        {
+            "source": "/invite/server",
+            "destination": "https://redy.cf/dispatch/invite/server",
+            "permanent": true
+        },
+        {
+            "source": "/invite/bot",
+            "destination": "https://redy.cf/dispatch/invite/bot",
+            "permanent": true
+        }
+    ],
+    "cleanUrls": true
+}
