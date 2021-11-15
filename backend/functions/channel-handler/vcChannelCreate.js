@@ -57,7 +57,7 @@ const vcChannelCreate = async (
 			.setColor('#c98fd9')
 
 		await server.channels.cache
-			.find((channel) => channel.name === 'request-channels')
+			.find((channel) => channel.name.includes('request-channels'))
 			.send(embed)
 
 		await server.member(initiated).voice.setChannel(channel)
