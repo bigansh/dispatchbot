@@ -39,7 +39,7 @@ client.on('ready', () => {
 			channel.name.includes('request-dm')
 		)
 
-		console.log(channel.first().name)
+		console.log(channel.first())
 
 		channel.first().parent.setName('direct messages & vc')
 		channel.first().setName('request-channels')
