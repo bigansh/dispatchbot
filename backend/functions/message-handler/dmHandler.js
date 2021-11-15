@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 /**
- *  This function takes care of the !dis user command.
+ *  This function takes care of the 'dm' user command.
  *
  * @param {Discord.Message} message
  */

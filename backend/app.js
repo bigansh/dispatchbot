@@ -11,7 +11,9 @@ const dmHandler = require('./functions/message-handler/dmHandler'),
 	delReactionHan = require('./functions/message-handler/delReactionHan'),
 	helpHandler = require('./functions/message-handler/helpHandler'),
 	gdmHandler = require('./functions/message-handler/gdmHandler'),
-	gdmReactionHandler = require('./functions/message-handler/gdmReactionHandler')
+	gdmReactionHandler = require('./functions/message-handler/gdmReactionHandler'),
+	vcHandler = require('./functions/message-handler/vcHandler'),
+	vcReactionHandler = require('./functions/message-handler/vcReactionHandler')
 
 const categoryCreate = require('./functions/utils/categoryCreate'),
 	requestChannelCreate = require('./functions/utils/requestChannelCreate'),
@@ -31,6 +33,19 @@ client.on('ready', () => {
 			type: 'LISTENING',
 		}
 	)
+
+	client.guilds.cache.array().forEach((guild) => {
+		const channel = guild.channels.cache.filter((channel) =>
+			channel.name.includes('request-dm')
+		)
+
+		channel.first().parent.setName('direct messages & vc')
+		channel.first().setName('request-channels')
+		channel.first().guild.channels.create('lobby', {
+			parent: channel.first().parent.id,
+			type: 'voice',
+		})
+	})
 })
 
 client.on('guildCreate', async (server) => {
@@ -91,13 +106,13 @@ client.on('message', async (message) => {
 			}, 1000 * 10)
 
 			if (message.content.includes('dm')) {
-				if (message.channel.name.includes('request-dm')) {
+				if (message.channel.name.includes('request-channels')) {
 					if (message.content.includes('gdm')) await gdmHandler(message)
 					else await dmHandler(message)
 				} else {
 					const channel = message.guild.channels.cache
-						.filter((channel) => channel.name.includes('request-dm'))
-						.map((channel) => channel)[0]
+						.filter((channel) => channel.name.includes('request-channels'))
+						.first()
 
 					await message.channel.send(
 						new Discord.MessageEmbed()
@@ -112,7 +127,24 @@ client.on('message', async (message) => {
 				if (message.channel.name.includes('-⇆-')) await delHandler(message)
 				else await notAllowed(message)
 			} else if (message.content.includes('help')) await helpHandler(message)
-			else
+			else if (message.content.includes('vc')) {
+				if (message.channel.name.includes('request-channels'))
+					await vcHandler(message)
+				else {
+					const channel = message.guild.channels.cache
+						.filter((channel) => channel.name.includes('request-channels'))
+						.first()
+
+					await message.channel.send(
+						new Discord.MessageEmbed()
+							.setTitle('Request Failed')
+							.setDescription(
+								`Hey, this command is only executable in the ${channel} channel.`
+							)
+							.setColor('#c98fd9')
+					)
+				}
+			} else
 				await message.channel.send(
 					new Discord.MessageEmbed()
 						.setTitle('Request Failed')
@@ -125,19 +157,51 @@ client.on('message', async (message) => {
 	}
 })
 
+const vcMap = new Set()
+
 client.on('messageReactionAdd', async (origin, user) => {
-	if (user.bot) return
+	try {
+		if (user.bot) return
 
-	const message = !origin.message.author
-		? await origin.message.fetch()
-		: origin.message
+		const message = !origin.message.author
+			? await origin.message.fetch()
+			: origin.message
 
-	if (origin.message.author.id !== client.user.id) return
+		if (origin.message.author.id !== client.user.id) return
 
-	if (origin.message.embeds[0].description.includes('group DM'))
-		await gdmReactionHandler(client, origin, user, message)
-	else if (origin.message.embeds[0].description.includes('DM'))
-		await dmReactionHandler(client, origin, user, message)
-	else if (origin.message.embeds[0].description.includes('delete'))
-		await delReactionHan(origin, message)
+		if (origin.message.embeds[0].description.includes('group DM'))
+			await gdmReactionHandler(client, origin, user, message)
+		else if (origin.message.embeds[0].description.includes('DM'))
+			await dmReactionHandler(client, origin, user, message)
+		else if (origin.message.embeds[0].description.includes('delete'))
+			await delReactionHan(origin, message)
+		else if (origin.message.embeds[0].description.includes('VC'))
+			vcMap.add(
+				await vcReactionHandler(client, origin, user, message).then(
+					(channel) => {
+						if (channel) return channel.id
+					}
+				)
+			)
+	} catch (e) {
+		console.log(e)
+	}
+})
+
+client.on('voiceStateUpdate', async (oldState, newState) => {
+	if (!oldState.channel) return
+
+	console.log(vcMap)
+
+	if (
+		!oldState.channel.members.size &&
+		vcMap.has(oldState.channelID) &&
+		oldState.channelID !== newState.channelID
+	) {
+		vcMap.delete(oldState.channelID)
+
+		console.log(vcMap)
+
+		await oldState.channel.delete()
+	}
 })

@@ -1,10 +1,9 @@
 const Discord = require('discord.js')
 
-const channelCreate = require('./channelCreate'),
-	gdmChannelCreate = require('./gdmChannelCreate')
+const vcChannelCreate = require('./vcChannelCreate')
 
 /**
- * This is the main creator function that takes care of creating a channel for the requested.
+ * This is the main creator function that takes care of creating a VC for the requested members.
  *
  * @param {Discord.Client} client
  * @param {Number} serverId
@@ -15,7 +14,7 @@ const channelCreate = require('./channelCreate'),
  * @param {Array<Discord.User>} mentions
  */
 
-const mainCreator = async (
+const mainVoiceCreator = async (
 	client,
 	serverId,
 	categoryId,
@@ -25,24 +24,23 @@ const mainCreator = async (
 	mentions = undefined
 ) => {
 	try {
-		const server = client.guilds.cache.get(serverId),
-			clientId = client.user.id
+		const server = client.guilds.cache.get(serverId)
 
 		if (requested && initiated)
-			await channelCreate(
-				clientId,
+			return await vcChannelCreate(
+				client,
 				server,
 				categoryId,
 				requested,
 				initiated,
 				reason
 			)
-		else if (mentions) {
-			await gdmChannelCreate(clientId, server, categoryId, mentions, reason)
-		}
+		// else if (mentions) {
+		// 	await gdmChannelCreate(clientId, server, categoryId, mentions, reason)
+		// }
 	} catch (e) {
 		console.log(e)
 	}
 }
 
-module.exports = mainCreator
+module.exports = mainVoiceCreator

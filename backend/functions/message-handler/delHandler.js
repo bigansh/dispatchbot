@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 /**
- * This function handles request for !dis delete command.
+ * This function handles request for 'delete' command.
  *
  * @param {Discord.Message} message
  */

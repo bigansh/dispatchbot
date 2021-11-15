@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 
 /**
- * This function sends messages about help command.
+ * This function sends messages about 'help' command.
  *
  * @param {Discord.Message} message
  */
@@ -28,6 +28,11 @@ const helpHandler = async (message) => {
 					{
 						name: 'Delete a DM channel',
 						value: '`!dis del`',
+						inline: false,
+					},
+					{
+						name: 'Create a VC',
+						value: '`!dis vc @user reason(optional)`',
 						inline: false,
 					},
 					{

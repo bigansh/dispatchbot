@@ -24,9 +24,7 @@ const gdmReactionHandler = async (client, origin, user, message) => {
 
 		requestedUsers.splice(0, 1)
 
-		if (message.embeds[0].fields[0]) {
-			reason = message.embeds[0].fields[0].value
-		}
+		if (message.embeds[0].fields[0]) reason = message.embeds[0].fields[0].value
 
 		if (!requestedUsers.includes(user.id)) {
 			await reactionRemover(origin.message, user.id)
@@ -57,7 +55,7 @@ const gdmReactionHandler = async (client, origin, user, message) => {
 			origin.message.reactions.removeAll()
 
 			const channel = origin.message.guild.channels.cache.filter((channel) =>
-					channel.name.includes('request-dm')
+					channel.name.includes('request-channels')
 				),
 				serverId = origin.message.guild.id,
 				categoryId = channel.map((channel) => channel.parentID)[0]
