@@ -39,6 +39,8 @@ client.on('ready', () => {
 			channel.name.includes('request-dm')
 		)
 
+		console.log(channel.first().name)
+
 		channel.first().parent.setName('direct messages & vc')
 		channel.first().setName('request-channels')
 		channel.first().guild.channels.create('lobby', {
