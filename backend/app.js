@@ -33,21 +33,6 @@ client.on('ready', () => {
 			type: 'LISTENING',
 		}
 	)
-
-	client.guilds.cache.array().forEach((guild) => {
-		const channel = guild.channels.cache.filter((channel) =>
-			channel.name.includes('request-dm')
-		)
-
-		if (channel.first()) {
-			channel.first().parent.setName('direct messages & vc')
-			channel.first().setName('request-channels')
-			channel.first().guild.channels.create('lobby', {
-				parent: channel.first().parent.id,
-				type: 'voice',
-			})
-		}
-	})
 })
 
 client.on('guildCreate', async (server) => {
