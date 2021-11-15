@@ -43,7 +43,7 @@ const vcChannelCreate = async (
 			)
 			.addFields(
 				{
-					name: 'Delete',
+					name: 'Delete Warning',
 					value:
 						'As soon as all the members of this VC leave, the channel will be deleted.',
 					inline: false,
