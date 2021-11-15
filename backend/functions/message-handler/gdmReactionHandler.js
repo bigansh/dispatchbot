@@ -39,13 +39,13 @@ const gdmReactionHandler = async (client, origin, user, message) => {
 		else if (origin.emoji.name === '❌' && requestedUsers.includes(user.id))
 			approval = false
 
-		if (approval === false) {
+		if (!approval) {
 			message.embeds[0].addField('Status', 'Rejected ❌', false)
 
 			origin.message.edit(message.embeds[0])
 			origin.message.reactions.removeAll()
 		} else if (
-			approval === true &&
+			approval &&
 			origin.message.reactions.cache.get('✅').count - 1 ===
 				requestedUsers.length
 		) {

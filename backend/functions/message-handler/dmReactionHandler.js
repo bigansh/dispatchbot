@@ -35,7 +35,7 @@ const reactionHandler = async (client, origin, user, message) => {
 		if (origin.emoji.name === '❌') approval = false
 		else if (origin.emoji.name === '✅') approval = true
 
-		if (approval === true) {
+		if (approval) {
 			message.embeds[0].addField('Status', 'Approved ✅', true)
 
 			origin.message.edit(message.embeds[0])
@@ -61,7 +61,7 @@ const reactionHandler = async (client, origin, user, message) => {
 			)
 
 			return
-		} else if (approval === false) {
+		} else if (!approval) {
 			message.embeds[0].addField('Status', 'Rejected ❌', false)
 
 			origin.message.edit(message.embeds[0])

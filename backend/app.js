@@ -178,16 +178,12 @@ client.on('messageReactionAdd', async (origin, user) => {
 client.on('voiceStateUpdate', async (oldState, newState) => {
 	if (!oldState.channel) return
 
-	console.log(vcMap)
-
 	if (
 		!oldState.channel.members.size &&
 		vcMap.has(oldState.channelID) &&
 		oldState.channelID !== newState.channelID
 	) {
 		vcMap.delete(oldState.channelID)
-
-		console.log(vcMap)
 
 		await oldState.channel.delete()
 	}
