@@ -41,12 +41,12 @@ client.on('ready', () => {
 
 		console.log(channel.first())
 
-		channel.first().parent.setName('direct messages & vc')
-		channel.first().setName('request-channels')
-		channel.first().guild.channels.create('lobby', {
-			parent: channel.first().parent.id,
-			type: 'voice',
-		})
+		// channel.first().parent.setName('direct messages & vc')
+		// channel.first().setName('request-channels')
+		// channel.first().guild.channels.create('lobby', {
+		// 	parent: channel.first().parent.id,
+		// 	type: 'voice',
+		// })
 	})
 })
 
