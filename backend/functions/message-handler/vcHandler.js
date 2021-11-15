@@ -14,7 +14,7 @@ const vcHandler = async (message) => {
 		const vcLobby = message.channel.guild.channels.cache
 			.filter(
 				(channel) =>
-					channel.name === 'lobby' &&
+					channel.name.includes('lobby') &&
 					channel.type === 'voice' &&
 					channel.parentID === message.channel.parentID
 			)
