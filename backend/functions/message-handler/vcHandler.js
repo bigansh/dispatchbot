@@ -48,7 +48,7 @@ const vcHandler = async (message) => {
 
 		if (mentions.length === 1) {
 			const msg = new Discord.MessageEmbed()
-				.setTitle('DM Request')
+				.setTitle('VC Request')
 				.setDescription(
 					`Hey ${mentions[0]}, user ${message.author} wants to create a VC with you. Both the entities will have to approve this request.`
 				)

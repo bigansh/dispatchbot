@@ -26,12 +26,12 @@ const helpHandler = async (message) => {
 						inline: false,
 					},
 					{
-						name: 'Delete a DM channel',
+						name: 'Delete a DM',
 						value: '`!dis del`',
 						inline: false,
 					},
 					{
-						name: 'Create a VC',
+						name: 'VC a user',
 						value: '`!dis vc @user reason(optional)`',
 						inline: false,
 					},
