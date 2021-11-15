@@ -121,7 +121,7 @@ client.on('message', async (message) => {
 							.setTitle('Request Failed')
 							.setDescription(
 								'Currently, this command cannot be executed by the bot because it lacks the necessary permissions. MODs need to provide the `MOVE MEMBERS` permission to the bot.'
-							)
+							).setColor('#c98fd9')
 					)
 					return
 				}
