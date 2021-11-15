@@ -115,6 +115,17 @@ client.on('message', async (message) => {
 				else await notAllowed(message)
 			} else if (message.content.includes('help')) await helpHandler(message)
 			else if (message.content.includes('vc')) {
+				if (!message.guild.me.permissions.has('MOVE_MEMBERS')) {
+					await message.channel.send(
+						new Discord.MessageEmbed()
+							.setTitle('Request Failed')
+							.setDescription(
+								'Currently, this command cannot be executed by the bot because it lacks the necessary permissions. MODs need to provide the `MOVE MEMBERS` permission to the bot.'
+							)
+					)
+					return
+				}
+
 				if (message.channel.name.includes('request-channels'))
 					await vcHandler(message)
 				else {
