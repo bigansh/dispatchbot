@@ -1,34 +1,35 @@
 const Discord = require('discord.js')
 
 /**
- * A function that creates a new VC.
+ * A function used to create a group DM channel.
  *
  * @param {Discord.Client} client
  * @param {Discord.Guild} server
  * @param {Number} categoryId
- * @param {Discord.User} requested
- * @param {Discord.User} initiated
+ * @param {Array<Discord.User>} mentions
  * @param {String} reason
  */
 
-const vcChannelCreate = async (
+const gvcChannelCreate = async (
 	client,
 	server,
 	categoryId,
-	requested,
-	initiated,
+	mentions,
 	reason = undefined
 ) => {
 	try {
 		const channel = await server.channels.create(
-			`${initiated.username} ‎‎‎‎⇆ ${requested.username}`,
+			mentions.map((user) => user.username).join(' ‎‎‎‎⇆ '),
 			{
 				parent: categoryId,
 				permissionOverwrites: [
 					{ id: server.id, deny: ['VIEW_CHANNEL'] },
-					{ type: 'member', id: requested.id, allow: ['VIEW_CHANNEL'] },
-					{ type: 'member', id: initiated.id, allow: ['VIEW_CHANNEL'] },
 					{ type: 'member', id: client.user.id, allow: ['VIEW_CHANNEL'] },
+					...mentions.map((user) => ({
+						type: 'member',
+						id: user.id,
+						allow: ['VIEW_CHANNEL'],
+					})),
 				],
 				type: 'voice',
 				reason: reason,
@@ -60,8 +61,9 @@ const vcChannelCreate = async (
 			.find((channel) => channel.name.includes('request-channels'))
 			.send(embed)
 
-		await server.member(initiated).voice.setChannel(channel)
-		await server.member(requested).voice.setChannel(channel)
+		mentions.forEach(async (member) => {
+			await server.member(member).voice.setChannel(channel)
+		})
 
 		return channel
 	} catch (e) {
@@ -69,4 +71,4 @@ const vcChannelCreate = async (
 	}
 }
 
-module.exports = vcChannelCreate
+module.exports = gvcChannelCreate

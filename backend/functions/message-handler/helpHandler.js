@@ -36,6 +36,11 @@ const helpHandler = async (message) => {
 						inline: false,
 					},
 					{
+						name: 'VC a group',
+						value: '`!dis gvc @user, @user, etc. reason(optional)`',
+						inline: false,
+					},
+					{
 						name: 'Help',
 						value: '`!dis help`',
 						inline: false,

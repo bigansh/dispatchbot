@@ -13,7 +13,9 @@ const dmHandler = require('./functions/message-handler/dmHandler'),
 	gdmHandler = require('./functions/message-handler/gdmHandler'),
 	gdmReactionHandler = require('./functions/message-handler/gdmReactionHandler'),
 	vcHandler = require('./functions/message-handler/vcHandler'),
-	vcReactionHandler = require('./functions/message-handler/vcReactionHandler')
+	vcReactionHandler = require('./functions/message-handler/vcReactionHandler'),
+	gvcHandler = require('./functions/message-handler/gvcHandler'),
+	gvcReactionHandler = require('./functions/message-handler/gvcReactionHandler')
 
 const categoryCreate = require('./functions/utils/categoryCreate'),
 	requestChannelCreate = require('./functions/utils/requestChannelCreate'),
@@ -121,14 +123,16 @@ client.on('message', async (message) => {
 							.setTitle('Request Failed')
 							.setDescription(
 								'Currently, this command cannot be executed by the bot because it lacks the necessary permissions. MODs need to provide the `MOVE MEMBERS` permission to the bot.'
-							).setColor('#c98fd9')
+							)
+							.setColor('#c98fd9')
 					)
 					return
 				}
 
-				if (message.channel.name.includes('request-channels'))
-					await vcHandler(message)
-				else {
+				if (message.channel.name.includes('request-channels')) {
+					if (message.content.includes('gvc')) await gvcHandler(message)
+					else await vcHandler(message)
+				} else {
 					const channel = message.guild.channels.cache
 						.filter((channel) => channel.name.includes('request-channels'))
 						.first()
@@ -173,6 +177,14 @@ client.on('messageReactionAdd', async (origin, user) => {
 			await dmReactionHandler(client, origin, user, message)
 		else if (origin.message.embeds[0].description.includes('delete'))
 			await delReactionHan(origin, message)
+		else if (origin.message.embeds[0].description.includes('group VC'))
+			vcMap.add(
+				await gvcReactionHandler(client, origin, user, message).then(
+					(channel) => {
+						if (channel) return channel.id
+					}
+				)
+			)
 		else if (origin.message.embeds[0].description.includes('VC'))
 			vcMap.add(
 				await vcReactionHandler(client, origin, user, message).then(

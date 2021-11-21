@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 
-const vcChannelCreate = require('./vcChannelCreate')
+const vcChannelCreate = require('./vcChannelCreate'),
+	gvcChannelCreate = require('./gvcChannelCreate')
 
 /**
  * This is the main creator function that takes care of creating a VC for the requested members.
@@ -35,9 +36,9 @@ const mainVoiceCreator = async (
 				initiated,
 				reason
 			)
-		// else if (mentions) {
-		// 	await gdmChannelCreate(clientId, server, categoryId, mentions, reason)
-		// }
+		else if (mentions) {
+			return await gvcChannelCreate(client, server, categoryId, mentions, reason)
+		}
 	} catch (e) {
 		console.log(e)
 	}

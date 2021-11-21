@@ -2,12 +2,12 @@ const Discord = require('discord.js'),
 	{ sentenceCase } = require('sentence-case')
 
 /**
- *  This function takes care of the 'vc' user command.
+ * This function handles the '!dis gvc' command & its procedures.
  *
  * @param {Discord.Message} message
  */
 
-const vcHandler = async (message) => {
+const gvcHandler = async (message) => {
 	try {
 		const mentions = message.mentions.users.map((user) => user)
 
@@ -50,15 +50,32 @@ const vcHandler = async (message) => {
 			return
 		}
 
-		if (mentions.length === 1) {
+        if (mentions.length === 1) {
+			await message.channel.send(
+				new Discord.MessageEmbed()
+					.setTitle('Request Failed')
+					.setDescription(
+						'Hey you only mentioned a single user. If you want to VC a single user, please use the `!dis vc` command.'
+					)
+					.setColor('#c98fd9')
+			)
+
+			return
+		}
+
+		if (mentions.length > 1) {
 			const msg = new Discord.MessageEmbed()
 				.setTitle('VC Request')
 				.setDescription(
-					`Hey ${mentions[0]}, user ${message.author} wants to create a VC with you. Both the entities will have to approve this request.`
+					`Folks, user ${
+						message.author
+					} wants to create a group VC between ${mentions.join(
+						', '
+					)}. If everyone approves, a VC will be created.`
 				)
 				.addField(
 					'Note',
-					`Both the entities have to join the ${vcLobby} VC in-oder for the request to be successful.`,
+					`All the entities have to join the ${vcLobby} VC in-oder for the request to be successful.`,
 					false
 				)
 				.setColor('#c98fd9')
@@ -71,22 +88,9 @@ const vcHandler = async (message) => {
 
 			return
 		}
-
-		if (mentions.length > 1) {
-			await message.channel.send(
-				new Discord.MessageEmbed()
-					.setTitle('Request Failed')
-					.setDescription(
-						'Hey, you mentioned more than one user. If you want to create a group DM, please use the `!dis gvc` command.'
-					)
-					.setColor('#c98fd9')
-			)
-
-			return
-		}
 	} catch (e) {
 		console.log(e)
 	}
 }
 
-module.exports = vcHandler
+module.exports = gvcHandler
