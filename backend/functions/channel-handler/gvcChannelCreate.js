@@ -40,7 +40,9 @@ const gvcChannelCreate = async (
 		const embed = new Discord.MessageEmbed()
 			.setTitle('Confirmation')
 			.setDescription(
-				`As requested, a VC has been created for ${requested} & ${initiated}!`
+				`As requested, a VC has been created for ${mentions
+					.map((user) => user.username)
+					.join(', ')}!`
 			)
 			.addFields(
 				{
