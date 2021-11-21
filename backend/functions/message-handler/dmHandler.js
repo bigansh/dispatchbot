@@ -1,4 +1,5 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js'),
+	{ sentenceCase } = require('sentence-case')
 
 /**
  *  This function takes care of the 'dm' user command.
@@ -8,8 +9,11 @@ const Discord = require('discord.js')
 
 const disHandler = async (message) => {
 	try {
-		const mentions = message.mentions.users.map((user) => user),
-			reason = message.content.match(/([a-z]+( [a-z]+)+)/gi)[1]
+		const mentions = message.mentions.users.map((user) => user)
+
+		let reason = message.content.toLowerCase().match(/([a-z]+( [a-z]+)+)/gi)[1]
+
+		if (reason) reason = sentenceCase(reason)
 
 		if (mentions.length > 0) {
 			const channels = message.guild.channels.cache.reduce(
