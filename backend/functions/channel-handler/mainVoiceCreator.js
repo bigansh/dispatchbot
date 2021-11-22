@@ -36,9 +36,14 @@ const mainVoiceCreator = async (
 				initiated,
 				reason
 			)
-		else if (mentions) {
-			return await gvcChannelCreate(client, server, categoryId, mentions, reason)
-		}
+		else if (mentions)
+			return await gvcChannelCreate(
+				client,
+				server,
+				categoryId,
+				mentions,
+				reason
+			)
 	} catch (e) {
 		console.log(e)
 	}

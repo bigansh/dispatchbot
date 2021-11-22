@@ -37,9 +37,8 @@ const mainCreator = async (
 				initiated,
 				reason
 			)
-		else if (mentions) {
+		else if (mentions)
 			await gdmChannelCreate(clientId, server, categoryId, mentions, reason)
-		}
 	} catch (e) {
 		console.log(e)
 	}

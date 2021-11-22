@@ -77,7 +77,7 @@ const vcHandler = async (message) => {
 				new Discord.MessageEmbed()
 					.setTitle('Request Failed')
 					.setDescription(
-						'Hey, you mentioned more than one user. If you want to create a group DM, please use the `!dis gvc` command.'
+						'Hey, you mentioned more than one user. If you want to create a group VC, please use the `!dis gvc` command.'
 					)
 					.setColor('#c98fd9')
 			)

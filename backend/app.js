@@ -126,6 +126,7 @@ client.on('message', async (message) => {
 							)
 							.setColor('#c98fd9')
 					)
+					
 					return
 				}
 
