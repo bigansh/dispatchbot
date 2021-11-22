@@ -214,6 +214,12 @@
 							data-bs-slide-to="4"
 							class="indicators"
 						></button>
+						<button
+							type="button"
+							data-bs-target="#carousel"
+							data-bs-slide-to="5"
+							class="indicators"
+						></button>
 					</div>
 					<div class="carousel-inner container">
 						<div class="carousel-item active mb-md-0 mb-1">
@@ -367,6 +373,39 @@
 								</div>
 							</div>
 						</div>
+						<div class="carousel-item mb-md-0 mb-1">
+							<div class="row align-items-center">
+								<div
+									class="col-md-5 mt-md-0 mt-2 order-md-1 text-md-start order-2"
+								>
+									<h3>Create Group VCs</h3>
+									<p>
+										With the
+										<code>!dis gvc @user, @user</code> command, you can request
+										for a group VC. If all the users mentioned accept the
+										request, a channel is created only visible to the mentioned
+										members.
+									</p>
+									<a
+										href="/invite/bot"
+										target="_blank"
+										class="text-decoration-none"
+									>
+										<button class="btn text-light" id="showcase-btn">
+											Add To Server
+										</button>
+									</a>
+									<!-- <a href="docs.html">
+										<button class="btn btn-outline-light m-2">Read Docs</button>
+									</a> -->
+								</div>
+								<img
+									src="assets/images/gvc.png"
+									class="col-md-7 img-fluid order-md-2 order-1"
+									alt="#"
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -406,13 +445,13 @@
 					<div class="col-md">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Can I add a reason for the request?</h5>
+								<h5 class="card-title">Can I add a reason for the DM/VC?</h5>
 								<p class="card-text">
 									Yes. You can add your reason after mentioning the users. This
 									is what the final command will look like:
 									<code>!dis dm @user Your reason</code>. This only works for
-									the <code>!dis dm</code>, <code>!dis gdm</code> &
-									<code>!dis vc</code> command.
+									the <code>!dis dm</code>, <code>!dis gdm</code>, 
+									<code>!dis vc</code> & <code>!dis gvc</code> command.
 								</p>
 							</div>
 						</div>

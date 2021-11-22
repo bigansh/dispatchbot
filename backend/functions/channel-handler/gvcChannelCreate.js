@@ -41,7 +41,7 @@ const gvcChannelCreate = async (
 			.setTitle('Confirmation')
 			.setDescription(
 				`As requested, a VC has been created for ${mentions
-					.map((user) => user.username)
+					.map((user) => user)
 					.join(', ')}!`
 			)
 			.addFields(
