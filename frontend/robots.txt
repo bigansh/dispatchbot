@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /docs.html
 
-Sitemap: https://www.dispatchbot.ml/sitemap.xml
+Sitemap: https://www.dispatchbot.tk/sitemap.xml
