@@ -3,7 +3,7 @@
     "redirects": [
         {
             "source": "/invite/bot",
-            "destination": "https://redy.cf/dispatch/invite/bot",
+            "destination": "https://discord.com/oauth2/authorize?client_id=852420316096757766&scope=bot&permissions=1360079888",
             "permanent": true
         }
     ],
